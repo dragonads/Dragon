@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Dragon Hub — Official Channel</title>
-  <meta name="description" content="Dragon Hub official Telegram channel.">
+  <title>Dragon Hub</title>
+  <meta name="description" content="Dragon Hub Official Telegram Channel">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -19,12 +19,14 @@
     }
 
     :root {
-      --gold-1: #fff0b0;
-      --gold-2: #e4bd59;
-      --gold-3: #9a6d1c;
-      --black: #030303;
-      --white: #f8f5ed;
-      --muted: #85827b;
+      --bg: #020406;
+      --bg2: #070b10;
+      --white: #f5f8fc;
+      --silver: #aeb8c4;
+      --muted: #687481;
+      --blue: #55cfff;
+      --blue2: #168dcc;
+      --line: rgba(120,210,255,.18);
     }
 
     html,
@@ -34,15 +36,19 @@
     }
 
     body {
-      font-family: "Inter", sans-serif;
-      background: #030303;
+      background: var(--bg);
       color: var(--white);
+      font-family: "Manrope", sans-serif;
       overflow: hidden;
     }
 
-    /* =========================================
-       MAIN SCREEN
-    ========================================= */
+    a {
+      text-decoration: none;
+    }
+
+    /* =========================
+       MAIN
+    ========================= */
 
     .landing {
       width: 100%;
@@ -53,32 +59,38 @@
       overflow: hidden;
 
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
 
       background:
         radial-gradient(
-          ellipse at 50% 43%,
-          rgba(228,189,89,.075) 0%,
-          rgba(228,189,89,.025) 24%,
-          transparent 48%
+          circle at 50% 42%,
+          rgba(36,163,225,.13) 0%,
+          rgba(36,163,225,.055) 18%,
+          transparent 43%
         ),
         radial-gradient(
-          ellipse at 50% 100%,
-          rgba(228,189,89,.045),
-          transparent 42%
+          circle at 50% 100%,
+          rgba(30,132,190,.08),
+          transparent 40%
         ),
-        #030303;
+        linear-gradient(
+          145deg,
+          #010203,
+          #06090d 50%,
+          #010203
+        );
     }
 
-    /* =========================================
-       LUXURY LIGHT
-    ========================================= */
+    /* =========================
+       BACKGROUND LIGHT
+    ========================= */
 
-    .ambient {
+    .light {
       position: absolute;
-      width: 600px;
-      height: 600px;
+
+      width: 520px;
+      height: 520px;
 
       left: 50%;
       top: 43%;
@@ -87,19 +99,20 @@
 
       border-radius: 50%;
 
-      background: rgba(210,166,63,.035);
+      background: rgba(42,176,240,.045);
 
-      filter: blur(80px);
+      filter: blur(85px);
 
       pointer-events: none;
     }
 
-    /* =========================================
-       DECORATIVE RINGS
-    ========================================= */
+    /* =========================
+       TECH RINGS
+    ========================= */
 
     .ring {
       position: absolute;
+
       left: 50%;
       top: 43%;
 
@@ -109,666 +122,8 @@
 
       pointer-events: none;
 
-      border: 1px solid rgba(228,189,89,.045);
+      border: 1px solid rgba(82,198,245,.045);
     }
 
     .ring-1 {
-      width: 760px;
-      height: 760px;
-    }
-
-    .ring-2 {
-      width: 590px;
-      height: 590px;
-      border-color: rgba(228,189,89,.065);
-    }
-
-    .ring-3 {
-      width: 430px;
-      height: 430px;
-      border-color: rgba(228,189,89,.035);
-    }
-
-    /* =========================================
-       MAIN CONTENT
-    ========================================= */
-
-    .content {
-      width: min(92%, 510px);
-
-      position: relative;
-      z-index: 10;
-
-      text-align: center;
-
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    /* =========================================
-       OFFICIAL BADGE
-    ========================================= */
-
-    .official {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-
-      padding: 8px 15px;
-
-      border: 1px solid rgba(228,189,89,.22);
-
-      border-radius: 100px;
-
-      background: rgba(255,255,255,.018);
-
-      color: #aaa69b;
-
-      font-size: 8px;
-      font-weight: 600;
-
-      letter-spacing: 3px;
-
-      text-transform: uppercase;
-
-      margin-bottom: 26px;
-
-      backdrop-filter: blur(15px);
-    }
-
-    .official::before {
-      content: "";
-
-      width: 5px;
-      height: 5px;
-
-      border-radius: 50%;
-
-      background: var(--gold-1);
-
-      box-shadow: 0 0 10px rgba(255,240,176,.8);
-    }
-
-    /* =========================================
-       DRAGON LOGO
-    ========================================= */
-
-    .logo {
-      width: 185px;
-      height: 185px;
-
-      position: relative;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      border-radius: 50%;
-
-      background:
-        radial-gradient(
-          circle at 50% 35%,
-          #29251b 0%,
-          #12110e 35%,
-          #060606 72%
-        );
-
-      border: 1px solid rgba(228,189,89,.58);
-
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,.025) inset,
-        0 0 50px rgba(228,189,89,.10),
-        0 25px 70px rgba(0,0,0,.75);
-
-      margin-bottom: 28px;
-    }
-
-    .logo-inner {
-      width: 162px;
-      height: 162px;
-
-      border-radius: 50%;
-
-      border: 1px solid rgba(228,189,89,.20);
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      position: relative;
-    }
-
-    /*
-      Stylised luxury dragon mark.
-      Replace .dragon-mark with your actual PNG/SVG
-      later if you have the final logo artwork.
-    */
-
-    .dragon-mark {
-      width: 95px;
-      height: 105px;
-
-      position: relative;
-
-      filter:
-        drop-shadow(0 0 12px rgba(228,189,89,.20));
-    }
-
-    .dragon-mark::before {
-      content: "";
-
-      position: absolute;
-
-      width: 55px;
-      height: 76px;
-
-      left: 19px;
-      top: 12px;
-
-      border-left: 3px solid var(--gold-2);
-      border-top: 3px solid var(--gold-2);
-
-      border-radius: 65% 15% 0 55%;
-
-      transform: rotate(-25deg);
-
-      box-shadow:
-        -11px 17px 0 -9px var(--gold-2);
-    }
-
-    .dragon-mark::after {
-      content: "";
-
-      position: absolute;
-
-      width: 42px;
-      height: 42px;
-
-      right: 5px;
-      top: 28px;
-
-      border-right: 3px solid var(--gold-1);
-      border-bottom: 3px solid var(--gold-1);
-
-      border-radius: 10% 60% 55% 10%;
-
-      transform: rotate(-22deg);
-
-      box-shadow:
-        8px 11px 0 -6px var(--gold-3);
-    }
-
-    .dragon-eye {
-      position: absolute;
-
-      width: 5px;
-      height: 5px;
-
-      border-radius: 50%;
-
-      background: var(--gold-1);
-
-      box-shadow:
-        0 0 7px var(--gold-1);
-
-      top: 42px;
-      left: 63px;
-
-      z-index: 5;
-    }
-
-    .dragon-line {
-      position: absolute;
-
-      width: 70px;
-      height: 2px;
-
-      left: 12px;
-      bottom: 17px;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          var(--gold-2),
-          transparent
-        );
-    }
-
-    /* =========================================
-       BRAND
-    ========================================= */
-
-    .brand {
-      font-family: "Cinzel", serif;
-
-      font-size: clamp(46px, 12vw, 70px);
-
-      line-height: .95;
-
-      letter-spacing: 7px;
-
-      font-weight: 700;
-
-      text-transform: uppercase;
-
-      background:
-        linear-gradient(
-          180deg,
-          #fff5c9 0%,
-          #e9c967 28%,
-          #b88428 56%,
-          #f0d47d 78%,
-          #997027 100%
-        );
-
-      -webkit-background-clip: text;
-      background-clip: text;
-
-      color: transparent;
-
-      margin-bottom: 12px;
-
-      filter: drop-shadow(0 8px 18px rgba(0,0,0,.35));
-    }
-
-    .tagline {
-      color: #9f9b91;
-
-      font-size: 8px;
-
-      letter-spacing: 4px;
-
-      font-weight: 600;
-
-      text-transform: uppercase;
-
-      margin-bottom: 24px;
-    }
-
-    /* =========================================
-       DIVIDER
-    ========================================= */
-
-    .divider {
-      width: 115px;
-      height: 1px;
-
-      margin-bottom: 22px;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          var(--gold-2),
-          transparent
-        );
-    }
-
-    /* =========================================
-       DESCRIPTION
-    ========================================= */
-
-    .description {
-      width: min(100%, 370px);
-
-      color: var(--muted);
-
-      font-size: 12px;
-
-      line-height: 1.8;
-
-      font-weight: 400;
-
-      margin-bottom: 27px;
-    }
-
-    /* =========================================
-       JOIN BUTTON
-    ========================================= */
-
-    .join {
-      width: min(100%, 315px);
-      height: 56px;
-
-      position: relative;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      gap: 12px;
-
-      border-radius: 8px;
-
-      color: #100e08;
-
-      background:
-        linear-gradient(
-          135deg,
-          #f7df98 0%,
-          #dfba59 45%,
-          #a87820 100%
-        );
-
-      border: 1px solid rgba(255,238,172,.65);
-
-      box-shadow:
-        0 14px 35px rgba(0,0,0,.55),
-        0 0 35px rgba(228,189,89,.10);
-
-      font-size: 11px;
-      font-weight: 800;
-
-      letter-spacing: 2.5px;
-
-      text-transform: uppercase;
-
-      transition: .3s ease;
-
-      overflow: hidden;
-    }
-
-    .join::before {
-      content: "";
-
-      position: absolute;
-
-      width: 70%;
-      height: 160%;
-
-      left: -110%;
-      top: -30%;
-
-      transform: rotate(18deg);
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          rgba(255,255,255,.35),
-          transparent
-        );
-
-      transition: .7s ease;
-    }
-
-    .join:hover::before {
-      left: 140%;
-    }
-
-    .join:hover {
-      transform: translateY(-3px);
-
-      box-shadow:
-        0 18px 45px rgba(0,0,0,.6),
-        0 0 45px rgba(228,189,89,.17);
-    }
-
-    .tg {
-      width: 21px;
-      height: 21px;
-
-      border-radius: 50%;
-
-      background: #0b0b0b;
-
-      color: #fff;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      font-size: 10px;
-
-      position: relative;
-      z-index: 2;
-    }
-
-    .join span:last-child {
-      position: relative;
-      z-index: 2;
-    }
-
-    /* =========================================
-       SMALL NOTE
-    ========================================= */
-
-    .note {
-      margin-top: 14px;
-
-      color: #55524b;
-
-      font-size: 8px;
-
-      letter-spacing: 1.6px;
-
-      text-transform: uppercase;
-    }
-
-    /* =========================================
-       BOTTOM BRANDING
-    ========================================= */
-
-    .bottom {
-      position: absolute;
-
-      bottom: 18px;
-      left: 50%;
-
-      transform: translateX(-50%);
-
-      color: #37352f;
-
-      font-size: 7px;
-
-      letter-spacing: 3px;
-
-      text-transform: uppercase;
-
-      white-space: nowrap;
-
-      z-index: 5;
-    }
-
-    /* =========================================
-       MOBILE
-    ========================================= */
-
-    @media (max-width: 480px) {
-
-      .content {
-        width: 90%;
-      }
-
-      .official {
-        margin-bottom: 21px;
-      }
-
-      .logo {
-        width: 155px;
-        height: 155px;
-
-        margin-bottom: 23px;
-      }
-
-      .logo-inner {
-        width: 137px;
-        height: 137px;
-      }
-
-      .dragon-mark {
-        transform: scale(.83);
-      }
-
-      .brand {
-        font-size: 47px;
-        letter-spacing: 4px;
-      }
-
-      .tagline {
-        font-size: 7px;
-        letter-spacing: 3px;
-        margin-bottom: 20px;
-      }
-
-      .description {
-        font-size: 11px;
-        max-width: 320px;
-        margin-bottom: 24px;
-      }
-
-      .join {
-        height: 54px;
-      }
-
-      .ring-1 {
-        width: 540px;
-        height: 540px;
-      }
-
-      .ring-2 {
-        width: 410px;
-        height: 410px;
-      }
-
-      .ring-3 {
-        width: 300px;
-        height: 300px;
-      }
-    }
-
-    /* =========================================
-       SMALL HEIGHT DEVICES
-    ========================================= */
-
-    @media (max-height: 700px) {
-
-      .official {
-        margin-bottom: 14px;
-      }
-
-      .logo {
-        width: 125px;
-        height: 125px;
-        margin-bottom: 17px;
-      }
-
-      .logo-inner {
-        width: 110px;
-        height: 110px;
-      }
-
-      .dragon-mark {
-        transform: scale(.65);
-      }
-
-      .brand {
-        font-size: 43px;
-        margin-bottom: 9px;
-      }
-
-      .tagline {
-        margin-bottom: 14px;
-      }
-
-      .divider {
-        margin-bottom: 14px;
-      }
-
-      .description {
-        margin-bottom: 17px;
-      }
-
-      .join {
-        height: 50px;
-      }
-
-      .note {
-        margin-top: 9px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .join {
-        transition: none;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <main class="landing">
-
-    <div class="ambient"></div>
-
-    <div class="ring ring-1"></div>
-    <div class="ring ring-2"></div>
-    <div class="ring ring-3"></div>
-
-    <section class="content">
-
-      <!-- OFFICIAL LABEL -->
-      <div class="official">
-        Official Telegram Channel
-      </div>
-
-      <!-- DRAGON EMBLEM -->
-      <div class="logo">
-
-        <div class="logo-inner">
-
-          <div class="dragon-mark">
-            <span class="dragon-eye"></span>
-            <span class="dragon-line"></span>
-          </div>
-
-        </div>
-
-      </div>
-
-      <!-- BRAND -->
-      <h1 class="brand">
-        Dragon Hub
-      </h1>
-
-      <div class="tagline">
-        Daily Updates · Information · Insights
-      </div>
-
-      <div class="divider"></div>
-
-      <!-- DESCRIPTION -->
-      <p class="description">
-        Stay connected with Dragon Hub for daily updates,
-        useful information and timely notifications —
-        all in one place.
-      </p>
-
-      <!-- CTA -->
-      <a
-        class="join"
-        href="https://t.me/+mmDR9n1SDnxkNjJl"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span class="tg">➤</span>
-        <span>Join Channel</span>
-      </a>
-
-      <div class="note">
-        Connect with Dragon Hub on Telegram
-      </div>
-
-    </section>
-
-    <div class="bottom">
-      DRAGON HUB · OFFICIAL
-    </div>
-
-  </main>
-
-</body>
-                                        </html>
+      width: 760
