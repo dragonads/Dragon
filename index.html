@@ -1,637 +1,330 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Dragon Hub</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-html,body{
-  width:100%;
-  min-height:100%;
-}
-
-body{
-  background:#020407;
-  color:#fff;
-  font-family:Inter,sans-serif;
-  overflow:hidden;
-}
-
-.page{
-  min-height:100vh;
-  min-height:100svh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  overflow:hidden;
-
-  background:
-    radial-gradient(
-      circle at 50% 38%,
-      rgba(42,180,235,.16),
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at 50% 90%,
-      rgba(24,125,175,.08),
-      transparent 38%
-    ),
-    #020407;
-}
-
-/* ambient glow */
-
-.glow{
-  position:absolute;
-  width:430px;
-  height:430px;
-  border-radius:50%;
-  background:rgba(42,190,245,.09);
-  filter:blur(90px);
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-}
-
-/* subtle rings */
-
-.ring{
-  position:absolute;
-  left:50%;
-  top:43%;
-  transform:translate(-50%,-50%);
-  border:1px solid rgba(91,205,255,.07);
-  border-radius:50%;
-}
-
-.ring1{
-  width:700px;
-  height:700px;
-}
-
-.ring2{
-  width:500px;
-  height:500px;
-}
-
-/* content */
-
-.content{
-  width:92%;
-  max-width:500px;
-  text-align:center;
-  position:relative;
-  z-index:5;
-}
-
-/* label */
-
-.label{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-
-  padding:9px 16px;
-
-  border:1px solid rgba(94,210,255,.22);
-  border-radius:50px;
-
-  color:#8d9aa6;
-  background:rgba(255,255,255,.025);
-
-  font-size:8px;
-  font-weight:700;
-  letter-spacing:3px;
-  text-transform:uppercase;
-
-  margin-bottom:28px;
-}
-
-.label i{
-  width:6px;
-  height:6px;
-  border-radius:50%;
-  background:#69d9ff;
-  box-shadow:0 0 12px #35c9ff;
-}
-
-/* dragon logo */
-
-.logo{
-  width:190px;
-  height:190px;
-
-  margin:0 auto 27px;
-
-  border-radius:50%;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  position:relative;
-
-  background:
-    radial-gradient(
-      circle at 50% 35%,
-      #202b34,
-      #080d12 55%,
-      #020407 80%
-    );
-
-  border:1px solid rgba(103,211,255,.42);
-
-  box-shadow:
-    0 0 35px rgba(45,186,240,.12),
-    0 25px 70px rgba(0,0,0,.7),
-    inset 0 0 35px rgba(0,0,0,.9);
-}
-
-.logo:before{
-  content:"";
-  position:absolute;
-  inset:10px;
-  border-radius:50%;
-  border:1px solid rgba(107,215,255,.18);
-}
-
-/* dragon */
-
-.dragon{
-  position:relative;
-  width:100px;
-  height:115px;
-  filter:drop-shadow(0 0 14px rgba(71,205,255,.28));
-}
-
-/* head */
-
-.head{
-  position:absolute;
-  width:43px;
-  height:54px;
-  left:29px;
-  top:17px;
-
-  background:linear-gradient(
-    145deg,
-    #eaf4f8,
-    #8496a3 42%,
-    #26323a 70%,
-    #080c10
-  );
-
-  clip-path:polygon(
-    50% 0,
-    78% 17%,
-    100% 48%,
-    75% 63%,
-    67% 100%,
-    50% 77%,
-    33% 100%,
-    25% 63%,
-    0 48%,
-    22% 17%
-  );
-}
-
-/* wings */
-
-.wing{
-  position:absolute;
-  width:57px;
-  height:70px;
-  top:31px;
-
-  background:linear-gradient(
-    140deg,
-    #c6d3db,
-    #485862 48%,
-    #0a1015 85%
-  );
-}
-
-.left{
-  left:-2px;
-  clip-path:polygon(
-    100% 48%,
-    58% 32%,
-    0 0,
-    18% 45%,
-    0 100%,
-    63% 74%
-  );
-}
-
-.right{
-  right:-2px;
-  clip-path:polygon(
-    0 48%,
-    42% 32%,
-    100% 0,
-    82% 45%,
-    100% 100%,
-    37% 74%
-  );
-}
-
-/* body */
-
-.body{
-  position:absolute;
-  width:39px;
-  height:70px;
-  left:31px;
-  top:50px;
-
-  border-left:8px solid #687b88;
-  border-right:5px solid #18232b;
-
-  border-radius:35%;
-}
-
-/* eye */
-
-.eye{
-  position:absolute;
-  width:5px;
-  height:5px;
-  background:#dff8ff;
-  border-radius:50%;
-
-  left:50px;
-  top:39px;
-
-  box-shadow:
-    0 0 6px #fff,
-    0 0 15px #43ceff;
-
-  z-index:5;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-/* logo light */
+  <title>Dragon Hub</title>
+  <meta name="description" content="Dragon Hub official Telegram channel.">
 
-.logo-light{
-  position:absolute;
-
-  width:78px;
-  height:2px;
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  bottom:13px;
-  left:50%;
-  transform:translateX(-50%);
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  background:linear-gradient(
-    90deg,
-    transparent,
-    #5ed7ff,
-    transparent
-  );
+    :root {
+      --bg: #030609;
+      --card: rgba(10, 17, 23, 0.72);
+      --text: #f5faff;
+      --muted: #87939e;
+      --neon: #42d9ff;
+      --neon-soft: rgba(66, 217, 255, 0.16);
+      --border: rgba(66, 217, 255, 0.22);
+    }
 
-  box-shadow:0 0 12px rgba(74,207,255,.5);
-}
+    html,
+    body {
+      min-height: 100%;
+    }
 
-/* title */
+    body {
+      font-family: "Inter", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
 
-.title{
-  font-family:Cinzel,serif;
+    /* ---------- BACKGROUND ---------- */
 
-  font-size:clamp(46px,12vw,70px);
+    .page {
+      min-height: 100vh;
+      min-height: 100svh;
 
-  font-weight:700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-  letter-spacing:6px;
+      position: relative;
+      overflow: hidden;
 
-  line-height:1;
+      background:
+        radial-gradient(
+          circle at 50% 25%,
+          rgba(35, 190, 235, 0.10),
+          transparent 32%
+        ),
+        linear-gradient(
+          180deg,
+          #020406 0%,
+          #05090d 50%,
+          #020406 100%
+        );
+    }
 
-  color:#f4f7fa;
+    .glow {
+      position: absolute;
 
-  text-transform:uppercase;
+      width: 420px;
+      height: 420px;
 
-  text-shadow:
-    0 0 20px rgba(255,255,255,.06),
-    0 12px 35px rgba(0,0,0,.8);
+      top: 50%;
+      left: 50%;
 
-  margin-bottom:14px;
-}
+      transform: translate(-50%, -50%);
 
-.title span{
-  color:#72d9ff;
+      border-radius: 50%;
 
-  text-shadow:
-    0 0 12px rgba(72,205,255,.55),
-    0 0 30px rgba(72,205,255,.18);
-}
+      background: rgba(45, 201, 240, 0.055);
 
-/* tagline */
+      filter: blur(90px);
 
-.tagline{
-  color:#768490;
+      pointer-events: none;
+    }
 
-  font-size:8px;
-  font-weight:600;
+    /* ---------- MAIN CARD ---------- */
 
-  letter-spacing:4px;
+    .container {
+      width: min(92%, 440px);
 
-  text-transform:uppercase;
+      position: relative;
+      z-index: 2;
 
-  margin-bottom:23px;
-}
+      padding: 42px 28px 34px;
 
-/* divider */
+      text-align: center;
 
-.divider{
-  width:125px;
-  height:1px;
+      border: 1px solid var(--border);
 
-  margin:0 auto 22px;
+      border-radius: 24px;
 
-  background:linear-gradient(
-    90deg,
-    transparent,
-    #56cfff,
-    transparent
-  );
+      background:
+        linear-gradient(
+          145deg,
+          rgba(18, 28, 35, 0.72),
+          rgba(4, 8, 12, 0.88)
+        );
 
-  box-shadow:0 0 10px rgba(67,203,255,.3);
-}
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,.015) inset,
+        0 25px 80px rgba(0,0,0,.65),
+        0 0 55px rgba(66,217,255,.055);
 
-/* description */
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+    }
 
-.description{
-  max-width:360px;
-  margin:0 auto 28px;
+    /* ---------- TOP LINE ---------- */
 
-  color:#798692;
+    .top-line {
+      width: 55px;
+      height: 2px;
 
-  font-size:12px;
-  line-height:1.8;
-}
+      margin: 0 auto 25px;
 
-/* button */
+      background: var(--neon);
 
-.join{
-  width:min(100%,315px);
-  height:57px;
+      box-shadow:
+        0 0 8px var(--neon),
+        0 0 22px rgba(66,217,255,.45);
 
-  margin:auto;
+      border-radius: 10px;
+    }
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:11px;
+    /* ---------- LOGO ---------- */
 
-  border-radius:9px;
+    .logo {
+      width: 92px;
+      height: 92px;
 
-  color:#f5fbff;
+      margin: 0 auto 25px;
 
-  background:
-    linear-gradient(
-      135deg,
-      #15212a,
-      #070c11
-    );
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-  border:1px solid rgba(91,210,255,.55);
+      border-radius: 50%;
 
-  box-shadow:
-    0 0 25px rgba(46,188,239,.10),
-    0 15px 40px rgba(0,0,0,.6);
+      border: 1px solid rgba(66,217,255,.35);
 
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:2.5px;
+      background:
+        radial-gradient(
+          circle,
+          rgba(66,217,255,.12),
+          rgba(5,10,14,.95) 68%
+        );
 
-  text-transform:uppercase;
+      box-shadow:
+        0 0 25px rgba(66,217,255,.10),
+        inset 0 0 25px rgba(66,217,255,.045);
+    }
 
-  transition:.3s ease;
-}
+    .logo span {
+      font-size: 34px;
+      font-weight: 800;
 
-.join:hover{
-  transform:translateY(-3px);
+      color: #eefaff;
 
-  border-color:#79dcff;
+      text-shadow:
+        0 0 8px rgba(66,217,255,.75),
+        0 0 24px rgba(66,217,255,.30);
+    }
 
-  box-shadow:
-    0 0 35px rgba(46,188,239,.2),
-    0 18px 45px rgba(0,0,0,.7);
-}
+    /* ---------- BRAND ---------- */
 
-.telegram{
-  width:21px;
-  height:21px;
+    .brand {
+      font-size: 34px;
+      line-height: 1.1;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
+      font-weight: 800;
 
-  border-radius:50%;
+      letter-spacing: 3px;
 
-  background:#159bd3;
+      text-transform: uppercase;
 
-  font-size:10px;
+      margin-bottom: 10px;
 
-  box-shadow:0 0 12px rgba(31,183,237,.4);
-}
+      color: #f5faff;
 
-.note{
-  margin-top:14px;
+      text-shadow:
+        0 0 22px rgba(66,217,255,.08);
+    }
 
-  color:#414b54;
+    .brand span {
+      color: var(--neon);
 
-  font-size:8px;
+      text-shadow:
+        0 0 10px rgba(66,217,255,.45),
+        0 0 28px rgba(66,217,255,.16);
+    }
 
-  letter-spacing:1.5px;
+    .subtitle {
+      color: #7f8d98;
 
-  text-transform:uppercase;
-}
+      font-size: 10px;
 
-/* bottom */
+      font-weight: 600;
 
-.bottom{
-  position:absolute;
+      letter-spacing: 3px;
 
-  bottom:16px;
-  left:50%;
+      text-transform: uppercase;
 
-  transform:translateX(-50%);
+      margin-bottom: 25px;
+    }
 
-  color:#30383f;
+    /* ---------- DIVIDER ---------- */
 
-  font-size:7px;
-  letter-spacing:3px;
+    .divider {
+      width: 100%;
+      height: 1px;
 
-  white-space:nowrap;
-}
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(66,217,255,.22),
+          transparent
+        );
 
-/* mobile */
+      margin-bottom: 24px;
+    }
 
-@media(max-width:480px){
+    /* ---------- DESCRIPTION ---------- */
 
-  .content{
-    width:90%;
-  }
+    .description {
+      color: var(--muted);
 
-  .label{
-    margin-bottom:20px;
-  }
+      font-size: 13px;
 
-  .logo{
-    width:160px;
-    height:160px;
-    margin-bottom:22px;
-  }
+      line-height: 1.8;
 
-  .title{
-    font-size:45px;
-    letter-spacing:4px;
-  }
+      max-width: 340px;
 
-  .tagline{
-    font-size:7px;
-    letter-spacing:3px;
-  }
+      margin: 0 auto 28px;
+    }
 
-  .description{
-    font-size:11px;
-    max-width:320px;
-  }
+    /* ---------- CTA ---------- */
 
-  .ring1{
-    width:540px;
-    height:540px;
-  }
+    .join-btn {
+      width: 100%;
+      height: 56px;
 
-  .ring2{
-    width:390px;
-    height:390px;
-  }
-}
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-@media(max-height:700px){
+      gap: 11px;
 
-  .label{
-    margin-bottom:12px;
-  }
+      border-radius: 13px;
 
-  .logo{
-    width:125px;
-    height:125px;
-    margin-bottom:14px;
-  }
+      border: 1px solid rgba(66,217,255,.65);
 
-  .dragon{
-    transform:scale(.65);
-  }
+      background:
+        linear-gradient(
+          135deg,
+          rgba(66,217,255,.15),
+          rgba(66,217,255,.045)
+        );
 
-  .title{
-    font-size:40px;
-  }
+      color: #effbff;
 
-  .tagline{
-    margin-bottom:13px;
-  }
+      font-size: 12px;
+      font-weight: 800;
 
-  .divider{
-    margin-bottom:13px;
-  }
+      letter-spacing: 2px;
 
-  .description{
-    margin-bottom:16px;
-  }
+      text-transform: uppercase;
 
-  .join{
-    height:51px;
-  }
-}
-</style>
-</head>
+      text-decoration: none;
 
-<body>
+      box-shadow:
+        0 0 18px rgba(66,217,255,.10),
+        0 0 45px rgba(66,217,255,.055);
 
-<div class="page">
+      transition: all .3s ease;
 
-  <div class="glow"></div>
+      position: relative;
 
-  <div class="ring ring1"></div>
-  <div class="ring ring2"></div>
+      overflow: hidden;
+    }
 
-  <div class="content">
+    .join-btn::before {
+      content: "";
 
-    <div class="label">
-      <i></i>
-      Official Telegram Channel
-    </div>
+      position: absolute;
 
-    <div class="logo">
+      top: 0;
+      left: -100%;
 
-      <div class="dragon">
+      width: 60%;
+      height: 100%;
 
-        <div class="wing left"></div>
-        <div class="wing right"></div>
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255,255,255,.16),
+          transparent
+        );
 
-        <div class="body"></div>
+      transform: skewX(-20deg);
 
-        <div class="head"></div>
+      transition: .65s ease;
+    }
 
-        <div class="eye"></div>
+    .join-btn:hover::before {
+      left: 140%;
+    }
 
-        <div class="logo-light"></div>
+    .join-btn:hover {
+      transform: translateY(-2px);
 
-      </div>
+      border-color: var(--neon);
 
-    </div>
-
-    <h1 class="title">
-      DRAGON <span>HUB</span>
-    </h1>
-
-    <div class="tagline">
-      Daily Updates · Information · Insights
-    </div>
-
-    <div class="divider"></div>
-
-    <p class="description">
-      Stay connected with Dragon Hub for daily updates,
-      useful information and timely notifications —
-      all in one place.
-    </p>
-
-    <a
-      class="join"
-      href="https://t.me/+mmDR9n1SDnxkNjJl"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <span class="telegram">➤</span>
-      JOIN CHANNEL
-    </a>
-
-    <div class="note">
-      Connect with Dragon Hub on Telegram
-    </div>
-
-  </div>
-
-  <div class="bottom">
-    DRAGON HUB · OFFICIAL
-  </div>
-
-</div>
-
-</body>
-  </html>
+      box-shadow:
+        0 0 22px rgba(66,217,255,.22
