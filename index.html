@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>DRAGON HUB — Official Community</title>
+<title>DRAGON HUB</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 *{
@@ -17,712 +17,655 @@
     box-sizing:border-box;
 }
 
-:root{
-    --bg:#050605;
-    --green:#9cffc7;
-    --soft:#b9c3bd;
-    --line:rgba(255,255,255,.12);
+html,body{
+    width:100%;
+    min-height:100%;
 }
 
 body{
-    background:var(--bg);
+    background:#080909;
     color:#fff;
-    font-family:Inter,Arial,sans-serif;
+    font-family:Inter,sans-serif;
     overflow-x:hidden;
 }
 
-/* =========================
+/* ================================
    BACKGROUND
-========================= */
+================================ */
 
-.background{
-    position:fixed;
-    inset:0;
-    z-index:-2;
+.page{
+    min-height:100vh;
+    position:relative;
     overflow:hidden;
+    background:
+        radial-gradient(
+            circle at 70% 45%,
+            rgba(92,255,158,.10),
+            transparent 30%
+        ),
+        #080909;
 }
 
-.glow{
+.page:before{
+    content:"";
     position:absolute;
-    width:650px;
-    height:650px;
-    border-radius:50%;
-    background:rgba(54,180,104,.10);
-    filter:blur(130px);
+    inset:0;
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        );
+    background-size:70px 70px;
+    mask-image:linear-gradient(
+        to bottom,
+        rgba(0,0,0,.8),
+        transparent 90%
+    );
+    pointer-events:none;
 }
 
-.glow.one{
-    top:-350px;
-    left:-250px;
-}
+/* ================================
+   NAV
+================================ */
 
-.glow.two{
-    right:-350px;
-    bottom:-300px;
-    background:rgba(90,255,160,.07);
-}
-
-/* =========================
-   NAVIGATION
-========================= */
-
-header{
+nav{
     position:absolute;
     top:0;
     left:0;
     width:100%;
-    z-index:10;
-}
-
-.nav{
-    width:min(1250px,90%);
-    height:100px;
-    margin:auto;
+    height:90px;
+    z-index:20;
 
     display:flex;
     align-items:center;
     justify-content:space-between;
+
+    padding:0 5vw;
 }
 
-.logo{
+.nav-logo{
     display:flex;
     align-items:center;
     gap:12px;
 
-    font-size:13px;
+    font-size:12px;
     font-weight:800;
-    letter-spacing:3px;
+    letter-spacing:4px;
 }
 
-.logo-symbol{
-    width:40px;
-    height:40px;
+.mark{
+    width:36px;
+    height:36px;
 
     display:grid;
     place-items:center;
 
-    border:1px solid rgba(156,255,199,.25);
+    border:1px solid rgba(151,255,194,.4);
     border-radius:50%;
 
-    color:var(--green);
-
-    background:rgba(156,255,199,.04);
+    color:#9affc3;
+    font-size:17px;
 
     box-shadow:
-        0 0 30px rgba(156,255,199,.08);
+        0 0 25px rgba(151,255,194,.1);
 }
 
 .nav-right{
     display:flex;
     align-items:center;
-    gap:22px;
+    gap:20px;
 }
 
-.nav-text{
-    color:#78827c;
-    font-size:10px;
+.nav-status{
+    font-size:9px;
     letter-spacing:2px;
+    color:#69736d;
 }
 
-.nav-line{
-    width:35px;
-    height:1px;
-    background:rgba(255,255,255,.2);
+.nav-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#8effb9;
+    box-shadow:0 0 15px #8effb9;
 }
 
-/* =========================
-   HERO
-========================= */
+/* ================================
+   MAIN
+================================ */
 
-.hero{
+.main{
+    position:relative;
     min-height:100vh;
-    width:min(1250px,90%);
-    margin:auto;
+    width:100%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* Giant background word */
+
+.bg-word{
+    position:absolute;
+    z-index:0;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-50%)
+        rotate(-90deg);
+
+    font-family:"Barlow Condensed",sans-serif;
+
+    font-size:min(35vw,500px);
+
+    font-weight:900;
+
+    letter-spacing:-20px;
+
+    color:transparent;
+
+    -webkit-text-stroke:1px rgba(255,255,255,.045);
+
+    white-space:nowrap;
+
+    user-select:none;
+}
+
+/* ================================
+   CONTENT
+================================ */
+
+.content{
+    position:relative;
+    z-index:5;
+
+    width:min(1250px,90vw);
+
+    min-height:100vh;
 
     display:grid;
-    grid-template-columns:45% 55%;
+    grid-template-columns:42% 58%;
 
     align-items:center;
-
-    padding-top:80px;
 }
 
-/* LEFT */
+/* ================================
+   LEFT TEXT
+================================ */
 
-.hero-left{
+.left{
     position:relative;
-    z-index:4;
+    z-index:8;
+    padding-left:3vw;
 }
 
-.kicker{
+.eyebrow{
     display:flex;
     align-items:center;
     gap:12px;
 
-    color:var(--green);
+    color:#93ffbb;
 
-    font-size:10px;
+    font-size:9px;
     font-weight:700;
 
-    letter-spacing:3px;
+    letter-spacing:4px;
 
-    margin-bottom:28px;
+    margin-bottom:24px;
 }
 
-.kicker-line{
-    width:30px;
+.eyebrow-line{
+    width:35px;
     height:1px;
-    background:var(--green);
+    background:#93ffbb;
 }
 
 .title{
-    font-family:"Playfair Display",serif;
+    font-family:"Barlow Condensed",sans-serif;
 
-    font-size:clamp(70px,9vw,135px);
+    font-size:clamp(90px,12vw,170px);
 
-    line-height:.78;
+    font-weight:900;
 
-    letter-spacing:-7px;
+    line-height:.73;
 
-    font-weight:600;
+    letter-spacing:-5px;
 
-    margin-left:-8px;
+    text-transform:uppercase;
 }
 
-.title .dragon{
+.title .one{
     display:block;
 }
 
-.title .hub{
+.title .two{
     display:block;
 
-    margin-left:65px;
+    margin-left:55px;
 
-    color:var(--green);
+    color:#9affc2;
 
-    font-style:italic;
+    text-shadow:
+        0 0 45px rgba(126,255,174,.13);
 }
 
-.subtitle{
-    max-width:400px;
+.description{
+    width:390px;
+    max-width:100%;
 
-    margin-top:42px;
+    margin-top:40px;
 
-    color:#909b94;
+    color:#7e8882;
 
-    font-size:13px;
+    font-size:12px;
 
     line-height:1.9;
 }
 
-/* CTA */
+/* ================================
+   CTA
+================================ */
 
-.button{
+.join{
     display:inline-flex;
     align-items:center;
-    gap:15px;
+    gap:17px;
 
-    margin-top:32px;
+    margin-top:30px;
 
-    padding:15px 21px;
+    padding:6px 7px 6px 20px;
 
     color:#06100a;
 
+    background:#9affc2;
+
     text-decoration:none;
 
-    background:var(--green);
-
-    border-radius:3px;
-
-    font-size:11px;
-
+    font-size:10px;
     font-weight:800;
 
-    letter-spacing:1px;
+    letter-spacing:1.5px;
+
+    border-radius:100px;
 
     transition:.3s ease;
-
-    box-shadow:
-        0 12px 45px rgba(156,255,199,.12);
 }
 
-.button:hover{
+.join:hover{
     transform:translateY(-4px);
 
     box-shadow:
-        0 18px 55px rgba(156,255,199,.25);
+        0 15px 45px rgba(127,255,174,.2);
 }
 
-.button-arrow{
-    width:25px;
-    height:25px;
+.join-arrow{
+    width:34px;
+    height:34px;
+
+    border-radius:50%;
 
     display:grid;
     place-items:center;
 
-    border-left:1px solid rgba(0,0,0,.18);
+    background:#07100a;
 
-    padding-left:10px;
+    color:#9affc2;
+
+    font-size:15px;
 }
 
-/* =========================
-   IMAGE
-========================= */
+/* ================================
+   IMAGE AREA
+================================ */
 
-.hero-right{
-    height:760px;
+.right{
     position:relative;
+
+    height:100vh;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
-.photo{
-    position:absolute;
+.image-wrap{
+    position:relative;
 
-    width:75%;
-    height:88%;
+    width:min(510px,75%);
+    height:76vh;
 
-    right:0;
-    top:6%;
+    max-height:720px;
 
     overflow:hidden;
 
-    border-radius:2px;
+    transform:rotate(2deg);
 
-    border:1px solid rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.13);
 
     box-shadow:
-        -30px 30px 100px rgba(0,0,0,.65);
+        0 40px 100px rgba(0,0,0,.65);
 }
 
-.photo::before{
+.image-wrap:before{
     content:"";
 
     position:absolute;
     inset:0;
-
     z-index:2;
 
     background:
         linear-gradient(
             180deg,
-            rgba(0,0,0,.02) 35%,
-            rgba(0,0,0,.5) 100%
+            rgba(0,0,0,.03) 25%,
+            rgba(0,0,0,.65) 100%
         );
 }
 
-.photo::after{
+.image-wrap:after{
     content:"";
 
     position:absolute;
-    inset:0;
+    inset:12px;
 
     z-index:3;
 
-    border:1px solid rgba(156,255,199,.08);
+    border:1px solid rgba(154,255,194,.15);
 
     pointer-events:none;
 }
 
-.photo img{
+.hero-img{
     width:100%;
     height:100%;
 
     object-fit:cover;
-
     object-position:center;
 
-    filter:saturate(.82) contrast(1.05);
+    transform:scale(1.04);
 
-    transform:scale(1.03);
+    filter:
+        contrast(1.06)
+        saturate(.82);
 
     transition:1s ease;
 }
 
-.photo:hover img{
-    transform:scale(1.08);
+.image-wrap:hover .hero-img{
+    transform:scale(1.09);
 }
 
-/* IMAGE LABEL */
+/* Image bottom info */
 
-.image-label{
+.image-info{
     position:absolute;
+    z-index:6;
 
+    left:30px;
+    right:30px;
     bottom:28px;
-    left:28px;
 
-    z-index:5;
+    display:flex;
+    align-items:end;
+    justify-content:space-between;
+}
 
-    padding:13px 16px;
+.image-info small{
+    display:block;
 
-    background:rgba(5,8,6,.62);
+    color:#94a099;
+
+    font-size:7px;
+
+    letter-spacing:3px;
+
+    margin-bottom:7px;
+}
+
+.image-info strong{
+    font-family:"Barlow Condensed",sans-serif;
+
+    font-size:25px;
+
+    letter-spacing:1px;
+}
+
+/* ================================
+   FLOATING LABELS
+================================ */
+
+.label-top{
+    position:absolute;
+    z-index:10;
+
+    top:15%;
+    right:-35px;
+
+    padding:14px 18px;
+
+    background:rgba(8,10,9,.72);
+
+    border:1px solid rgba(255,255,255,.1);
 
     backdrop-filter:blur(15px);
 
-    border:1px solid rgba(255,255,255,.12);
+    transform:rotate(2deg);
 }
 
-.image-label small{
+.label-top span{
     display:block;
 
-    color:#7f8983;
+    color:#68726c;
 
-    font-size:8px;
+    font-size:7px;
 
     letter-spacing:2px;
 
     margin-bottom:5px;
 }
 
-.image-label strong{
-    font-size:11px;
+.label-top strong{
+    font-size:10px;
 
     letter-spacing:1px;
 }
 
-/* VERTICAL TEXT */
+/* Side vertical */
 
-.vertical{
+.side-text{
     position:absolute;
 
-    right:-25px;
-    top:25%;
+    right:2vw;
+    bottom:12%;
 
     writing-mode:vertical-rl;
 
-    color:#4e5952;
+    color:#47504b;
 
     font-size:8px;
 
     letter-spacing:4px;
 }
 
-/* NUMBER */
+/* ================================
+   BOTTOM
+================================ */
 
-.number{
+.bottom{
     position:absolute;
 
-    bottom:40px;
-    left:0;
+    z-index:10;
 
-    color:#414b45;
-
-    font-family:"Playfair Display",serif;
-
-    font-size:70px;
-}
-
-/* =========================
-   SCROLL
-========================= */
-
-.scroll{
-    position:absolute;
-
-    bottom:35px;
-    left:5%;
+    bottom:30px;
+    left:5vw;
+    right:5vw;
 
     display:flex;
     align-items:center;
-    gap:12px;
+    justify-content:space-between;
+}
 
-    color:#59645e;
+.bottom-left{
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    color:#4d5852;
 
     font-size:8px;
-
-    letter-spacing:3px;
-}
-
-.scroll-line{
-    width:45px;
-    height:1px;
-
-    background:#59645e;
-}
-
-/* =========================
-   SECOND SECTION
-========================= */
-
-.about{
-    width:min(1000px,90%);
-    margin:0 auto;
-
-    padding:120px 0 150px;
-
-    text-align:center;
-}
-
-.about-kicker{
-    color:var(--green);
-
-    font-size:9px;
-
-    letter-spacing:3px;
-
-    margin-bottom:22px;
-}
-
-.about h2{
-    font-family:"Playfair Display",serif;
-
-    font-size:clamp(35px,5vw,58px);
-
-    font-weight:500;
-
-    line-height:1.05;
-
-    margin-bottom:22px;
-}
-
-.about h2 em{
-    color:var(--green);
-}
-
-.about p{
-    max-width:570px;
-
-    margin:auto;
-
-    color:#77817b;
-
-    font-size:13px;
-
-    line-height:1.9;
-}
-
-/* =========================
-   FEATURE STRIP
-========================= */
-
-.features{
-    width:min(1100px,90%);
-    margin:auto;
-
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
-
-    margin-bottom:120px;
-}
-
-.feature{
-    padding:35px 28px;
-
-    border-right:1px solid var(--line);
-}
-
-.feature:last-child{
-    border-right:0;
-}
-
-.feature span{
-    color:#526057;
-
-    font-size:9px;
 
     letter-spacing:2px;
 }
 
-.feature h3{
-    margin-top:13px;
-
-    font-size:14px;
+.line{
+    width:45px;
+    height:1px;
+    background:#3e4742;
 }
 
-.feature p{
-    margin-top:8px;
+.bottom-right{
+    color:#4d5852;
 
-    color:#707b74;
+    font-family:"Barlow Condensed",sans-serif;
 
-    font-size:11px;
+    font-size:17px;
 
-    line-height:1.7;
+    letter-spacing:2px;
 }
 
-/* =========================
-   FINAL
-========================= */
-
-.final{
-    width:min(900px,90%);
-    margin:auto;
-
-    text-align:center;
-
-    padding:90px 20px;
-
-    border:1px solid rgba(255,255,255,.08);
-
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(70,180,105,.08),
-            transparent 65%
-        );
-}
-
-.final h2{
-    font-family:"Playfair Display",serif;
-
-    font-size:clamp(38px,6vw,70px);
-
-    font-weight:500;
-}
-
-.final p{
-    color:#737d77;
-
-    font-size:12px;
-
-    margin-top:12px;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-footer{
-    text-align:center;
-
-    padding:50px 0 30px;
-
-    color:#3f4943;
-
-    font-size:9px;
-
-    letter-spacing:1px;
-}
-
-/* =========================
+/* ================================
    MOBILE
-========================= */
+================================ */
 
 @media(max-width:850px){
 
-    .nav{
-        height:80px;
+    .page{
+        min-height:100svh;
     }
 
-    .nav-text,
-    .nav-line{
+    nav{
+        height:75px;
+        padding:0 6vw;
+    }
+
+    .nav-status{
         display:none;
     }
 
-    .hero{
+    .content{
+        width:90vw;
+
         display:flex;
         flex-direction:column;
 
-        padding-top:130px;
+        align-items:stretch;
 
-        width:92%;
+        padding-top:110px;
+        padding-bottom:80px;
     }
 
-    .hero-left{
-        width:100%;
+    .left{
+        padding:0;
 
         text-align:center;
     }
 
-    .kicker{
+    .eyebrow{
         justify-content:center;
     }
 
     .title{
-        font-size:70px;
-
-        letter-spacing:-4px;
-
-        margin-left:0;
+        font-size:82px;
+        letter-spacing:-3px;
     }
 
-    .title .hub{
-        margin-left:35px;
+    .title .two{
+        margin-left:30px;
     }
 
-    .subtitle{
-        margin-left:auto;
-        margin-right:auto;
+    .description{
+        margin:32px auto 0;
+
+        font-size:11px;
+
+        max-width:340px;
     }
 
-    .button{
+    .join{
+        margin-top:25px;
+
         width:100%;
 
-        justify-content:center;
+        justify-content:space-between;
+
+        padding-left:22px;
     }
 
-    .hero-right{
-        width:100%;
-        height:540px;
+    .right{
+        height:500px;
 
-        margin-top:45px;
+        margin-top:35px;
     }
 
-    .photo{
-        width:88%;
-        height:95%;
+    .image-wrap{
+        width:82%;
+        height:480px;
 
+        transform:rotate(1deg);
+    }
+
+    .label-top{
         right:0;
-        top:0;
+        top:8%;
     }
 
-    .number{
-        left:0;
-        bottom:0;
-
-        font-size:55px;
-    }
-
-    .vertical{
+    .side-text{
         display:none;
     }
 
-    .scroll{
-        display:none;
+    .bg-word{
+        font-size:60vw;
     }
 
-    .features{
-        grid-template-columns:1fr;
+    .bottom{
+        bottom:18px;
     }
 
-    .feature{
-        border-right:0;
-        border-bottom:1px solid var(--line);
+    .bottom-right{
+        font-size:13px;
     }
-
-    .feature:last-child{
-        border-bottom:0;
-    }
-
-    .about{
-        padding-top:80px;
-        padding-bottom:100px;
-    }
-
 }
 
 @media(max-width:430px){
 
-    .logo{
-        font-size:11px;
-        letter-spacing:2px;
-    }
-
-    .dragon-mark{
-        width:35px;
-        height:35px;
-    }
-
     .title{
-        font-size:59px;
+        font-size:70px;
     }
 
-    .hero-right{
-        height:480px;
+    .right{
+        height:450px;
     }
 
-    .photo{
-        width:92%;
+    .image-wrap{
+        height:430px;
+        width:86%;
+    }
+
+    .image-info{
+        left:20px;
+        right:20px;
+        bottom:20px;
+    }
+
+    .image-info strong{
+        font-size:21px;
     }
 }
 </style>
@@ -730,202 +673,37 @@ footer{
 
 <body>
 
-<div class="background">
-    <div class="glow one"></div>
-    <div class="glow two"></div>
-</div>
+<div class="page">
+
+    <!-- BACKGROUND -->
+    <div class="bg-word">
+        DRAGON
+    </div>
 
 
-<header>
-    <div class="nav">
+    <!-- NAV -->
+    <nav>
 
-        <div class="logo">
-            <div class="logo-symbol">🐉</div>
+        <div class="nav-logo">
+
+            <div class="mark">D</div>
+
             DRAGON HUB
+
         </div>
 
         <div class="nav-right">
-            <div class="nav-text">OFFICIAL COMMUNITY</div>
-            <div class="nav-line"></div>
-        </div>
 
-    </div>
-</header>
-
-
-<main>
-
-<!-- HERO -->
-
-<section class="hero">
-
-    <div class="hero-left">
-
-        <div class="kicker">
-            <span class="kicker-line"></span>
-            WELCOME TO THE HUB
-        </div>
-
-        <h1 class="title">
-            <span class="dragon">DRAGON</span>
-            <span class="hub">HUB.</span>
-        </h1>
-
-        <p class="subtitle">
-            A dedicated community space for updates,
-            discussions and shared content.
-            Connect with Dragon Hub through our
-            official Telegram community.
-        </p>
-
-        <a
-            class="button"
-            href="https://t.me/+rcU1nqNlF6tjYTI9"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            JOIN THE COMMUNITY
-
-            <span class="button-arrow">↗</span>
-        </a>
-
-    </div>
-
-
-    <div class="hero-right">
-
-        <div class="photo">
-
-            <img
-                src="IMG_20260509_223101_194.jpg"
-                alt="Dragon Hub"
-            >
-
-            <div class="image-label">
-
-                <small>DRAGON HUB</small>
-
-                <strong>OFFICIAL COMMUNITY</strong>
-
+            <div class="nav-status">
+                OFFICIAL TELEGRAM
             </div>
 
+            <div class="nav-dot"></div>
+
         </div>
 
-        <div class="vertical">
-            DRAGON HUB • ESTABLISHED COMMUNITY
-        </div>
-
-        <div class="number">
-            01
-        </div>
-
-    </div>
-
-</section>
+    </nav>
 
 
-<!-- ABOUT -->
-
-<section class="about">
-
-    <div class="about-kicker">
-        THE COMMUNITY
-    </div>
-
-    <h2>
-        One place.<br>
-        <em>Stay connected.</em>
-    </h2>
-
-    <p>
-        Dragon Hub brings the community together in one
-        simple destination. Access the official Telegram
-        channel and stay connected with the latest content
-        shared by the community.
-    </p>
-
-</section>
-
-
-<!-- FEATURES -->
-
-<section class="features">
-
-    <div class="feature">
-
-        <span>01 / UPDATES</span>
-
-        <h3>Stay Informed</h3>
-
-        <p>
-            Follow new information and content
-            shared with the community.
-        </p>
-
-    </div>
-
-
-    <div class="feature">
-
-        <span>02 / COMMUNITY</span>
-
-        <h3>Connect</h3>
-
-        <p>
-            Join the Telegram community and
-            stay connected with other members.
-        </p>
-
-    </div>
-
-
-    <div class="feature">
-
-        <span>03 / ACCESS</span>
-
-        <h3>Direct Entry</h3>
-
-        <p>
-            Simple access to the official Dragon
-            Hub Telegram community.
-        </p>
-
-    </div>
-
-</section>
-
-
-<!-- FINAL CTA -->
-
-<section class="final">
-
-    <h2>
-        Enter Dragon Hub.
-    </h2>
-
-    <p>
-        Connect with the official community.
-    </p>
-
-    <a
-        class="button"
-        href="https://t.me/+rcU1nqNlF6tjYTI9"
-        target="_blank"
-        rel="noopener noreferrer"
-    >
-        JOIN TELEGRAM
-        <span class="button-arrow">↗</span>
-    </a>
-
-</section>
-
-
-</main>
-
-
-<footer>
-    © 2026 DRAGON HUB — OFFICIAL COMMUNITY
-</footer>
-
-</body>
-  </html>
+    <!-- MAIN -->
+    <main
