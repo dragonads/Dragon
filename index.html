@@ -4,53 +4,57 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>DRAGON HUB</title>
+<title>DRAGON HUB | Official</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+
+:root{
+    --black:#050507;
+    --black2:#09090d;
+    --white:#ffffff;
+    --muted:#92929d;
+
+    --neon:#a855f7;
+    --neon2:#7c3aed;
+    --blue:#6366f1;
+
+    --border:rgba(255,255,255,.10);
+}
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
-html,body{
-    width:100%;
-    min-height:100%;
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-    background:#080909;
-    color:#fff;
+    background:var(--black);
+    color:white;
     font-family:Inter,sans-serif;
     overflow-x:hidden;
 }
 
-/* ================================
-   BACKGROUND
-================================ */
 
-.page{
-    min-height:100vh;
-    position:relative;
-    overflow:hidden;
-    background:
-        radial-gradient(
-            circle at 70% 45%,
-            rgba(92,255,158,.10),
-            transparent 30%
-        ),
-        #080909;
-}
+/* =========================================
+   GLOBAL BACKGROUND
+========================================= */
 
-.page:before{
+body:before{
     content:"";
-    position:absolute;
+    position:fixed;
     inset:0;
-    background-image:
+    pointer-events:none;
+    z-index:-5;
+
+    background:
         linear-gradient(
             rgba(255,255,255,.025) 1px,
             transparent 1px
@@ -60,367 +64,514 @@ body{
             rgba(255,255,255,.025) 1px,
             transparent 1px
         );
+
     background-size:70px 70px;
+
     mask-image:linear-gradient(
         to bottom,
-        rgba(0,0,0,.8),
-        transparent 90%
+        black,
+        transparent 85%
     );
-    pointer-events:none;
 }
 
-/* ================================
-   NAV
-================================ */
 
-nav{
+/* Neon ambient lights */
+
+.neon-light{
+    position:fixed;
+
+    width:500px;
+    height:500px;
+
+    border-radius:50%;
+
+    filter:blur(130px);
+
+    opacity:.13;
+
+    pointer-events:none;
+
+    z-index:-4;
+}
+
+.neon-light.one{
+    background:var(--neon);
+    top:-250px;
+    left:-200px;
+}
+
+.neon-light.two{
+    background:var(--blue);
+    right:-280px;
+    top:35%;
+}
+
+.neon-light.three{
+    background:#c026d3;
+    left:30%;
+    bottom:-350px;
+}
+
+
+/* =========================================
+   NAV
+========================================= */
+
+.nav{
     position:absolute;
+
     top:0;
     left:0;
+
     width:100%;
     height:90px;
-    z-index:20;
+
+    padding:0 6vw;
 
     display:flex;
     align-items:center;
     justify-content:space-between;
 
-    padding:0 5vw;
+    z-index:50;
 }
 
-.nav-logo{
+.brand{
     display:flex;
     align-items:center;
-    gap:12px;
+    gap:13px;
 
     font-size:12px;
     font-weight:800;
+
     letter-spacing:4px;
 }
 
-.mark{
-    width:36px;
-    height:36px;
+.brand-icon{
+    width:40px;
+    height:40px;
+
+    border-radius:13px;
 
     display:grid;
     place-items:center;
 
-    border:1px solid rgba(151,255,194,.4);
-    border-radius:50%;
+    font-size:16px;
 
-    color:#9affc3;
-    font-size:17px;
+    color:white;
+
+    border:1px solid rgba(168,85,247,.7);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(168,85,247,.22),
+            rgba(168,85,247,.02)
+        );
 
     box-shadow:
-        0 0 25px rgba(151,255,194,.1);
+        0 0 15px rgba(168,85,247,.35),
+        inset 0 0 20px rgba(168,85,247,.12);
 }
 
 .nav-right{
     display:flex;
     align-items:center;
-    gap:20px;
-}
+    gap:12px;
 
-.nav-status{
+    color:#73737e;
+
     font-size:9px;
+
     letter-spacing:2px;
-    color:#69736d;
 }
 
-.nav-dot{
+.live-dot{
     width:7px;
     height:7px;
+
     border-radius:50%;
-    background:#8effb9;
-    box-shadow:0 0 15px #8effb9;
+
+    background:#b76cff;
+
+    box-shadow:
+        0 0 8px #a855f7,
+        0 0 18px #7c3aed;
+
+    animation:pulse 2s infinite;
 }
 
-/* ================================
-   MAIN
-================================ */
+@keyframes pulse{
 
-.main{
-    position:relative;
+    0%,100%{
+        opacity:.6;
+        transform:scale(.8);
+    }
+
+    50%{
+        opacity:1;
+        transform:scale(1.15);
+    }
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero{
     min-height:100vh;
-    width:100%;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
+    width:min(1250px,90%);
 
-/* Giant background word */
-
-.bg-word{
-    position:absolute;
-    z-index:0;
-
-    left:50%;
-    top:50%;
-
-    transform:
-        translate(-50%,-50%)
-        rotate(-90deg);
-
-    font-family:"Barlow Condensed",sans-serif;
-
-    font-size:min(35vw,500px);
-
-    font-weight:900;
-
-    letter-spacing:-20px;
-
-    color:transparent;
-
-    -webkit-text-stroke:1px rgba(255,255,255,.045);
-
-    white-space:nowrap;
-
-    user-select:none;
-}
-
-/* ================================
-   CONTENT
-================================ */
-
-.content{
-    position:relative;
-    z-index:5;
-
-    width:min(1250px,90vw);
-
-    min-height:100vh;
+    margin:auto;
 
     display:grid;
-    grid-template-columns:42% 58%;
+
+    grid-template-columns:45% 55%;
 
     align-items:center;
+
+    padding-top:70px;
 }
 
-/* ================================
-   LEFT TEXT
-================================ */
 
-.left{
+/* =========================================
+   HERO LEFT
+========================================= */
+
+.hero-left{
     position:relative;
-    z-index:8;
-    padding-left:3vw;
+
+    z-index:10;
 }
 
 .eyebrow{
     display:flex;
     align-items:center;
+
     gap:12px;
 
-    color:#93ffbb;
+    color:#bda3ff;
 
     font-size:9px;
+
     font-weight:700;
 
     letter-spacing:4px;
 
-    margin-bottom:24px;
+    margin-bottom:25px;
 }
 
 .eyebrow-line{
     width:35px;
     height:1px;
-    background:#93ffbb;
+
+    background:#a855f7;
+
+    box-shadow:
+        0 0 10px #a855f7;
 }
 
+
+/* Main title */
+
 .title{
-    font-family:"Barlow Condensed",sans-serif;
+    font-family:"Space Grotesk",sans-serif;
 
-    font-size:clamp(90px,12vw,170px);
+    font-size:clamp(70px,9vw,135px);
 
-    font-weight:900;
+    line-height:.78;
 
-    line-height:.73;
+    letter-spacing:-7px;
 
-    letter-spacing:-5px;
+    font-weight:800;
 
     text-transform:uppercase;
 }
 
-.title .one{
-    display:block;
-}
-
-.title .two{
+.title .dragon{
     display:block;
 
-    margin-left:55px;
-
-    color:#9affc2;
+    color:white;
 
     text-shadow:
-        0 0 45px rgba(126,255,174,.13);
+        0 0 35px rgba(255,255,255,.08);
 }
 
+.title .hub{
+    display:block;
+
+    margin-left:65px;
+
+    color:transparent;
+
+    -webkit-text-stroke:1px #fff;
+
+    position:relative;
+
+    text-shadow:
+        0 0 15px rgba(168,85,247,.4);
+}
+
+.title .hub:after{
+    content:"HUB";
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    color:#a855f7;
+
+    opacity:.17;
+
+    filter:blur(5px);
+
+    z-index:-1;
+}
+
+
+/* Description */
+
 .description{
-    width:390px;
-    max-width:100%;
+    max-width:430px;
 
-    margin-top:40px;
-
-    color:#7e8882;
+    color:#888892;
 
     font-size:12px;
 
     line-height:1.9;
+
+    margin-top:38px;
 }
 
-/* ================================
-   CTA
-================================ */
 
-.join{
+/* =========================================
+   CTA
+========================================= */
+
+.cta{
     display:inline-flex;
+
     align-items:center;
-    gap:17px;
+
+    gap:15px;
 
     margin-top:30px;
 
-    padding:6px 7px 6px 20px;
-
-    color:#06100a;
-
-    background:#9affc2;
+    padding:5px 6px 5px 20px;
 
     text-decoration:none;
 
+    color:white;
+
+    background:rgba(255,255,255,.035);
+
+    border:1px solid rgba(168,85,247,.55);
+
+    border-radius:100px;
+
     font-size:10px;
+
     font-weight:800;
 
     letter-spacing:1.5px;
 
-    border-radius:100px;
+    box-shadow:
+        0 0 15px rgba(168,85,247,.13),
+        inset 0 0 15px rgba(168,85,247,.04);
 
     transition:.3s ease;
 }
 
-.join:hover{
-    transform:translateY(-4px);
+.cta:hover{
+    border-color:#c084fc;
 
     box-shadow:
-        0 15px 45px rgba(127,255,174,.2);
+        0 0 15px rgba(168,85,247,.45),
+        0 0 40px rgba(124,58,237,.2);
+
+    transform:translateY(-3px);
 }
 
-.join-arrow{
-    width:34px;
-    height:34px;
-
-    border-radius:50%;
+.cta-circle{
+    width:35px;
+    height:35px;
 
     display:grid;
     place-items:center;
 
-    background:#07100a;
+    border-radius:50%;
 
-    color:#9affc2;
+    color:white;
 
-    font-size:15px;
+    background:
+        linear-gradient(
+            135deg,
+            #a855f7,
+            #6366f1
+        );
+
+    box-shadow:
+        0 0 15px rgba(168,85,247,.45);
+
+    font-size:14px;
 }
 
-/* ================================
-   IMAGE AREA
-================================ */
 
-.right{
+/* =========================================
+   HERO IMAGE
+========================================= */
+
+.hero-right{
+    height:780px;
+
     position:relative;
 
-    height:100vh;
-
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 }
 
-.image-wrap{
+
+/* Neon frame */
+
+.photo-frame{
     position:relative;
 
-    width:min(510px,75%);
-    height:76vh;
+    width:min(520px,76%);
 
-    max-height:720px;
+    height:74vh;
+
+    max-height:700px;
 
     overflow:hidden;
 
-    transform:rotate(2deg);
+    background:#09090b;
 
     border:1px solid rgba(255,255,255,.13);
 
     box-shadow:
-        0 40px 100px rgba(0,0,0,.65);
+        0 35px 100px rgba(0,0,0,.75),
+        0 0 35px rgba(168,85,247,.08);
+
+    transform:rotate(-1.5deg);
 }
 
-.image-wrap:before{
+
+/* Neon border */
+
+.photo-frame:before{
     content:"";
 
     position:absolute;
-    inset:0;
-    z-index:2;
+
+    inset:-1px;
+
+    z-index:5;
+
+    pointer-events:none;
+
+    border:1px solid transparent;
 
     background:
         linear-gradient(
-            180deg,
-            rgba(0,0,0,.03) 25%,
-            rgba(0,0,0,.65) 100%
-        );
+            135deg,
+            rgba(168,85,247,.8),
+            transparent 30%,
+            transparent 70%,
+            rgba(99,102,241,.7)
+        ) border-box;
+
+    mask:
+        linear-gradient(#000 0 0) padding-box,
+        linear-gradient(#000 0 0);
+
+    mask-composite:exclude;
+
+    box-shadow:
+        0 0 20px rgba(168,85,247,.35);
 }
 
-.image-wrap:after{
-    content:"";
 
-    position:absolute;
-    inset:12px;
+/* Image */
 
-    z-index:3;
-
-    border:1px solid rgba(154,255,194,.15);
-
-    pointer-events:none;
-}
-
-.hero-img{
+.photo-frame img{
     width:100%;
     height:100%;
 
     object-fit:cover;
+
     object-position:center;
 
-    transform:scale(1.04);
-
     filter:
-        contrast(1.06)
-        saturate(.82);
+        contrast(1.04)
+        saturate(.65)
+        brightness(.88);
+
+    transform:scale(1.03);
 
     transition:1s ease;
 }
 
-.image-wrap:hover .hero-img{
-    transform:scale(1.09);
+.photo-frame:hover img{
+    transform:scale(1.08);
+
+    filter:
+        contrast(1.05)
+        saturate(.78)
+        brightness(.94);
 }
 
-/* Image bottom info */
 
-.image-info{
+/* Image dark overlay */
+
+.photo-frame:after{
+    content:"";
+
     position:absolute;
-    z-index:6;
 
-    left:30px;
-    right:30px;
+    inset:0;
+
+    z-index:3;
+
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.02) 30%,
+            rgba(0,0,0,.72) 100%
+        );
+}
+
+
+/* =========================================
+   IMAGE CONTENT
+========================================= */
+
+.photo-content{
+    position:absolute;
+
+    left:28px;
+    right:28px;
     bottom:28px;
 
+    z-index:8;
+
     display:flex;
-    align-items:end;
+
+    align-items:flex-end;
+
     justify-content:space-between;
 }
 
-.image-info small{
+.photo-content small{
     display:block;
 
-    color:#94a099;
+    color:#aaaab4;
 
     font-size:7px;
 
@@ -429,150 +580,344 @@ nav{
     margin-bottom:7px;
 }
 
-.image-info strong{
-    font-family:"Barlow Condensed",sans-serif;
+.photo-content strong{
+    font-family:"Space Grotesk",sans-serif;
 
-    font-size:25px;
+    font-size:24px;
 
     letter-spacing:1px;
+
+    text-shadow:
+        0 0 20px rgba(168,85,247,.3);
 }
 
-/* ================================
-   FLOATING LABELS
-================================ */
+.photo-arrow{
+    width:40px;
+    height:40px;
 
-.label-top{
+    display:grid;
+    place-items:center;
+
+    border-radius:50%;
+
+    border:1px solid rgba(255,255,255,.2);
+
+    background:rgba(0,0,0,.4);
+
+    backdrop-filter:blur(10px);
+
+    color:#d8c0ff;
+
+    box-shadow:
+        0 0 18px rgba(168,85,247,.18);
+}
+
+
+/* =========================================
+   FLOATING NEON LABEL
+========================================= */
+
+.floating{
     position:absolute;
-    z-index:10;
 
-    top:15%;
-    right:-35px;
+    z-index:15;
 
-    padding:14px 18px;
+    right:-30px;
+    top:18%;
 
-    background:rgba(8,10,9,.72);
+    padding:14px 17px;
 
-    border:1px solid rgba(255,255,255,.1);
+    background:
+        rgba(8,8,12,.78);
 
-    backdrop-filter:blur(15px);
+    border:1px solid rgba(168,85,247,.45);
 
-    transform:rotate(2deg);
+    backdrop-filter:blur(16px);
+
+    box-shadow:
+        0 0 20px rgba(168,85,247,.15);
+
+    animation:float 4s ease-in-out infinite;
 }
 
-.label-top span{
+.floating small{
     display:block;
 
-    color:#68726c;
+    color:#777783;
 
     font-size:7px;
 
     letter-spacing:2px;
 
-    margin-bottom:5px;
+    margin-bottom:6px;
 }
 
-.label-top strong{
+.floating strong{
     font-size:10px;
 
     letter-spacing:1px;
+
+    color:#e6d9ff;
 }
 
-/* Side vertical */
+@keyframes float{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+}
+
+
+/* =========================================
+   SIDE TEXT
+========================================= */
 
 .side-text{
     position:absolute;
 
-    right:2vw;
-    bottom:12%;
+    right:-5px;
+    bottom:15%;
 
     writing-mode:vertical-rl;
 
-    color:#47504b;
+    color:#454550;
 
     font-size:8px;
 
     letter-spacing:4px;
 }
 
-/* ================================
-   BOTTOM
-================================ */
+
+/* =========================================
+   BOTTOM INFO
+========================================= */
 
 .bottom{
     position:absolute;
 
-    z-index:10;
-
-    bottom:30px;
-    left:5vw;
-    right:5vw;
+    left:6vw;
+    right:6vw;
+    bottom:25px;
 
     display:flex;
-    align-items:center;
+
     justify-content:space-between;
-}
 
-.bottom-left{
-    display:flex;
     align-items:center;
-    gap:15px;
 
-    color:#4d5852;
+    color:#51515b;
 
     font-size:8px;
 
     letter-spacing:2px;
 }
 
-.line{
-    width:45px;
-    height:1px;
-    background:#3e4742;
+.bottom-line{
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
 }
 
-.bottom-right{
-    color:#4d5852;
+.bottom-line span{
+    width:45px;
 
-    font-family:"Barlow Condensed",sans-serif;
+    height:1px;
 
-    font-size:17px;
+    background:#45454e;
+}
+
+.bottom-number{
+    font-family:"Space Grotesk",sans-serif;
+
+    color:#60606b;
+
+    font-size:13px;
+}
+
+
+/* =========================================
+   SECOND SECTION
+========================================= */
+
+.second{
+    width:min(1000px,90%);
+
+    margin:auto;
+
+    padding:130px 0 100px;
+
+    text-align:center;
+}
+
+.second-label{
+    color:#a855f7;
+
+    font-size:8px;
+
+    letter-spacing:4px;
+
+    margin-bottom:20px;
+
+    text-shadow:
+        0 0 12px rgba(168,85,247,.5);
+}
+
+.second h2{
+    font-family:"Space Grotesk",sans-serif;
+
+    font-size:clamp(35px,6vw,70px);
+
+    line-height:1;
+
+    letter-spacing:-3px;
+}
+
+.second h2 span{
+    color:transparent;
+
+    -webkit-text-stroke:1px #fff;
+}
+
+.second p{
+    max-width:550px;
+
+    margin:24px auto 0;
+
+    color:#777781;
+
+    font-size:12px;
+
+    line-height:1.9;
+}
+
+
+/* =========================================
+   FINAL CTA
+========================================= */
+
+.final{
+    width:min(900px,90%);
+
+    margin:30px auto 100px;
+
+    padding:75px 20px;
+
+    text-align:center;
+
+    position:relative;
+
+    overflow:hidden;
+
+    border:1px solid rgba(168,85,247,.22);
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(168,85,247,.09),
+            transparent 65%
+        );
+}
+
+.final:before{
+    content:"";
+
+    position:absolute;
+
+    width:250px;
+    height:250px;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    border-radius:50%;
+
+    border:1px solid rgba(168,85,247,.15);
+
+    box-shadow:
+        0 0 60px rgba(168,85,247,.08);
+
+    pointer-events:none;
+}
+
+.final h2{
+    position:relative;
+
+    font-family:"Space Grotesk",sans-serif;
+
+    font-size:clamp(35px,6vw,65px);
+
+    letter-spacing:-3px;
+}
+
+.final p{
+    position:relative;
+
+    color:#777781;
+
+    font-size:11px;
+
+    margin-top:10px;
+}
+
+.final .cta{
+    position:relative;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer{
+    text-align:center;
+
+    padding:0 0 35px;
+
+    color:#41414a;
+
+    font-size:8px;
 
     letter-spacing:2px;
 }
 
-/* ================================
+
+/* =========================================
    MOBILE
-================================ */
+========================================= */
 
 @media(max-width:850px){
 
-    .page{
-        min-height:100svh;
-    }
-
-    nav{
+    .nav{
         height:75px;
+
         padding:0 6vw;
     }
 
-    .nav-status{
+    .nav-right{
         display:none;
     }
 
-    .content{
-        width:90vw;
+    .hero{
+        width:90%;
 
         display:flex;
+
         flex-direction:column;
 
-        align-items:stretch;
-
-        padding-top:110px;
-        padding-bottom:80px;
+        padding-top:125px;
+        padding-bottom:75px;
     }
 
-    .left{
-        padding:0;
+    .hero-left{
+        width:100%;
 
         text-align:center;
     }
@@ -582,128 +927,344 @@ nav{
     }
 
     .title{
-        font-size:82px;
-        letter-spacing:-3px;
+        font-size:76px;
+
+        letter-spacing:-4px;
     }
 
-    .title .two{
+    .title .hub{
         margin-left:30px;
     }
 
     .description{
-        margin:32px auto 0;
+        max-width:350px;
+
+        margin:30px auto 0;
 
         font-size:11px;
-
-        max-width:340px;
     }
 
-    .join{
-        margin-top:25px;
-
+    .cta{
         width:100%;
 
         justify-content:space-between;
 
-        padding-left:22px;
+        padding-left:20px;
     }
 
-    .right{
-        height:500px;
+    .hero-right{
+        width:100%;
 
-        margin-top:35px;
+        height:540px;
+
+        margin-top:40px;
     }
 
-    .image-wrap{
-        width:82%;
-        height:480px;
+    .photo-frame{
+        width:84%;
 
-        transform:rotate(1deg);
+        height:510px;
+
+        transform:rotate(-1deg);
     }
 
-    .label-top{
+    .floating{
         right:0;
-        top:8%;
+
+        top:7%;
     }
 
     .side-text{
         display:none;
     }
 
-    .bg-word{
-        font-size:60vw;
-    }
-
     .bottom{
-        bottom:18px;
+        display:none;
     }
 
-    .bottom-right{
-        font-size:13px;
+    .second{
+        padding-top:90px;
     }
 }
 
+
 @media(max-width:430px){
 
+    .brand{
+        font-size:10px;
+
+        letter-spacing:3px;
+    }
+
+    .brand-icon{
+        width:35px;
+        height:35px;
+    }
+
     .title{
-        font-size:70px;
+        font-size:65px;
     }
 
-    .right{
-        height:450px;
+    .hero-right{
+        height:490px;
     }
 
-    .image-wrap{
-        height:430px;
-        width:86%;
+    .photo-frame{
+        width:88%;
+
+        height:465px;
     }
 
-    .image-info{
+    .photo-content{
         left:20px;
         right:20px;
         bottom:20px;
     }
 
-    .image-info strong{
-        font-size:21px;
+    .photo-content strong{
+        font-size:20px;
+    }
+
+    .floating{
+        padding:11px 13px;
+    }
+
+    .final{
+        padding:60px 15px;
     }
 }
+
 </style>
 </head>
 
+
 <body>
 
-<div class="page">
+<!-- AMBIENT NEON -->
+<div class="neon-light one"></div>
+<div class="neon-light two"></div>
+<div class="neon-light three"></div>
 
-    <!-- BACKGROUND -->
-    <div class="bg-word">
-        DRAGON
+
+<!-- NAV -->
+
+<nav class="nav">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            D
+        </div>
+
+        DRAGON HUB
+
     </div>
 
 
-    <!-- NAV -->
-    <nav>
+    <div class="nav-right">
 
-        <div class="nav-logo">
+        <span class="live-dot"></span>
 
-            <div class="mark">D</div>
+        OFFICIAL COMMUNITY
 
-            DRAGON HUB
+    </div>
+
+</nav>
+
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <!-- LEFT -->
+
+    <div class="hero-left">
+
+        <div class="eyebrow">
+
+            <span class="eyebrow-line"></span>
+
+            WELCOME TO THE HUB
 
         </div>
 
-        <div class="nav-right">
 
-            <div class="nav-status">
-                OFFICIAL TELEGRAM
+        <h1 class="title">
+
+            <span class="dragon">
+                DRAGON
+            </span>
+
+            <span class="hub">
+                HUB
+            </span>
+
+        </h1>
+
+
+        <p class="description">
+
+            Welcome to Dragon Hub — a dedicated space
+            for community updates, discussions and
+            shared content. Stay connected through
+            our official Telegram community.
+
+        </p>
+
+
+        <a
+            href="https://t.me/+rcU1nqNlF6tjYTI9"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="cta"
+        >
+
+            <span>
+                JOIN DRAGON HUB
+            </span>
+
+            <span class="cta-circle">
+                ↗
+            </span>
+
+        </a>
+
+    </div>
+
+
+
+    <!-- RIGHT -->
+
+    <div class="hero-right">
+
+
+        <div class="photo-frame">
+
+            <img
+                src="IMG_20260509_223101_194.jpg"
+                alt="Dragon Hub"
+            >
+
+
+            <div class="photo-content">
+
+                <div>
+
+                    <small>
+                        OFFICIAL COMMUNITY
+                    </small>
+
+                    <strong>
+                        DRAGON HUB
+                    </strong>
+
+                </div>
+
+
+                <div class="photo-arrow">
+                    ↗
+                </div>
+
             </div>
 
-            <div class="nav-dot"></div>
+        </div>
+
+
+        <div class="floating">
+
+            <small>
+                COMMUNITY ACCESS
+            </small>
+
+            <strong>
+                TELEGRAM ↗
+            </strong>
 
         </div>
 
-    </nav>
+
+        <div class="side-text">
+            DRAGON HUB / OFFICIAL / 2026
+        </div>
+
+    </div>
+
+</section>
 
 
-    <!-- MAIN -->
-    <main
+
+<!-- SECOND -->
+
+<section class="second">
+
+    <div class="second-label">
+        THE COMMUNITY
+    </div>
+
+
+    <h2>
+
+        CONNECT.
+        <span>EXPLORE.</span>
+
+    </h2>
+
+
+    <p>
+
+        One simple destination for the Dragon Hub
+        community. Access the official Telegram
+        channel and stay connected with new
+        information and shared content.
+
+    </p>
+
+</section>
+
+
+
+<!-- FINAL CTA -->
+
+<section class="final">
+
+    <h2>
+        Enter Dragon Hub.
+    </h2>
+
+
+    <p>
+        Connect with the official community.
+    </p>
+
+
+    <a
+        href="https://t.me/+rcU1nqNlF6tjYTI9"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="cta"
+    >
+
+        <span>
+            JOIN TELEGRAM
+        </span>
+
+        <span class="cta-circle">
+            ↗
+        </span>
+
+    </a>
+
+</section>
+
+
+
+<footer>
+
+    © 2026 DRAGON HUB — OFFICIAL COMMUNITY
+
+</footer>
+
+
+</body>
+    </html>
