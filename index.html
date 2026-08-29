@@ -1,770 +1,931 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>DRAGON HUB | Official</title>
+<title>DRAGON HUB — Official Community</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --green: #8cffc1;
-      --green-dark: #173c2b;
-      --white: #f6f8f7;
-      --muted: #a5b0aa;
-      --bg: #050806;
-      --glass: rgba(255,255,255,.055);
-      --border: rgba(255,255,255,.11);
-    }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+:root{
+    --bg:#050605;
+    --green:#9cffc7;
+    --soft:#b9c3bd;
+    --line:rgba(255,255,255,.12);
+}
 
-    html {
-      scroll-behavior: smooth;
-    }
+body{
+    background:var(--bg);
+    color:#fff;
+    font-family:Inter,Arial,sans-serif;
+    overflow-x:hidden;
+}
 
-    body {
-      background: var(--bg);
-      color: var(--white);
-      font-family: "DM Sans", sans-serif;
-      overflow-x: hidden;
-    }
+/* =========================
+   BACKGROUND
+========================= */
 
-    /* Background glow */
+.background{
+    position:fixed;
+    inset:0;
+    z-index:-2;
+    overflow:hidden;
+}
 
-    body::before {
-      content: "";
-      position: fixed;
-      width: 600px;
-      height: 600px;
-      left: -250px;
-      top: -250px;
-      background: rgba(67, 255, 155, .08);
-      filter: blur(100px);
-      border-radius: 50%;
-      pointer-events: none;
-    }
+.glow{
+    position:absolute;
+    width:650px;
+    height:650px;
+    border-radius:50%;
+    background:rgba(54,180,104,.10);
+    filter:blur(130px);
+}
 
-    body::after {
-      content: "";
-      position: fixed;
-      width: 500px;
-      height: 500px;
-      right: -250px;
-      bottom: -200px;
-      background: rgba(42, 122, 82, .10);
-      filter: blur(110px);
-      border-radius: 50%;
-      pointer-events: none;
-    }
+.glow.one{
+    top:-350px;
+    left:-250px;
+}
 
-    .page {
-      width: min(1180px, 92%);
-      margin: auto;
-      position: relative;
-      z-index: 2;
-    }
+.glow.two{
+    right:-350px;
+    bottom:-300px;
+    background:rgba(90,255,160,.07);
+}
 
-    /* NAV */
+/* =========================
+   NAVIGATION
+========================= */
 
-    nav {
-      height: 90px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+header{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:10;
+}
 
-    .logo-text {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: 2px;
-    }
+.nav{
+    width:min(1250px,90%);
+    height:100px;
+    margin:auto;
 
-    .dragon-mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
 
-      background:
-        linear-gradient(145deg,
-        rgba(140,255,193,.22),
-        rgba(140,255,193,.03));
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
 
-      border: 1px solid rgba(140,255,193,.25);
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:3px;
+}
 
-      box-shadow:
-        0 0 25px rgba(140,255,193,.08),
-        inset 0 0 20px rgba(140,255,193,.05);
+.logo-symbol{
+    width:40px;
+    height:40px;
 
-      font-size: 20px;
-    }
+    display:grid;
+    place-items:center;
 
-    .nav-tag {
-      font-size: 11px;
-      color: #8f9b94;
-      letter-spacing: 1px;
-      border: 1px solid var(--border);
-      padding: 9px 13px;
-      border-radius: 30px;
-      background: rgba(255,255,255,.025);
-    }
+    border:1px solid rgba(156,255,199,.25);
+    border-radius:50%;
 
-    /* HERO */
+    color:var(--green);
 
-    .hero {
-      min-height: 690px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 55px;
-      align-items: center;
-      padding: 45px 0 90px;
-    }
+    background:rgba(156,255,199,.04);
 
-    .hero-content {
-      position: relative;
-      z-index: 3;
-    }
+    box-shadow:
+        0 0 30px rgba(156,255,199,.08);
+}
 
-    .small-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:22px;
+}
 
-      padding: 8px 13px;
-      border-radius: 30px;
+.nav-text{
+    color:#78827c;
+    font-size:10px;
+    letter-spacing:2px;
+}
 
-      background: rgba(140,255,193,.055);
-      border: 1px solid rgba(140,255,193,.16);
+.nav-line{
+    width:35px;
+    height:1px;
+    background:rgba(255,255,255,.2);
+}
 
-      color: var(--green);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
+/* =========================
+   HERO
+========================= */
 
-      margin-bottom: 25px;
-    }
+.hero{
+    min-height:100vh;
+    width:min(1250px,90%);
+    margin:auto;
 
-    .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 12px var(--green);
-    }
+    display:grid;
+    grid-template-columns:45% 55%;
 
-    h1 {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(52px, 7vw, 88px);
-      line-height: .96;
-      letter-spacing: -3px;
-      margin-bottom: 25px;
-    }
+    align-items:center;
 
-    h1 span {
-      display: block;
-      color: var(--green);
-      font-style: italic;
-      font-weight: 600;
-    }
+    padding-top:80px;
+}
 
-    .description {
-      max-width: 500px;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.85;
-      margin-bottom: 32px;
-    }
+/* LEFT */
 
-    /* CTA */
+.hero-left{
+    position:relative;
+    z-index:4;
+}
 
-    .cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 13px;
+.kicker{
+    display:flex;
+    align-items:center;
+    gap:12px;
 
-      padding: 16px 21px;
-      border-radius: 13px;
+    color:var(--green);
 
-      text-decoration: none;
-      color: #07110b;
+    font-size:10px;
+    font-weight:700;
 
-      background: var(--green);
+    letter-spacing:3px;
 
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: .5px;
+    margin-bottom:28px;
+}
 
-      box-shadow:
-        0 12px 35px rgba(140,255,193,.14);
+.kicker-line{
+    width:30px;
+    height:1px;
+    background:var(--green);
+}
 
-      transition: .25s ease;
-    }
+.title{
+    font-family:"Playfair Display",serif;
 
-    .cta:hover {
-      transform: translateY(-3px);
-      box-shadow:
-        0 18px 45px rgba(140,255,193,.23);
-    }
+    font-size:clamp(70px,9vw,135px);
 
-    .telegram-icon {
-      width: 27px;
-      height: 27px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: rgba(0,0,0,.12);
-      font-size: 13px;
-    }
+    line-height:.78;
 
-    /* HERO IMAGE */
+    letter-spacing:-7px;
 
-    .visual {
-      position: relative;
-      height: 590px;
-    }
+    font-weight:600;
 
-    .image-frame {
-      position: absolute;
-      inset: 0;
+    margin-left:-8px;
+}
 
-      border-radius: 34px;
-      overflow: hidden;
+.title .dragon{
+    display:block;
+}
 
-      border: 1px solid rgba(255,255,255,.13);
+.title .hub{
+    display:block;
 
-      background: #101510;
+    margin-left:65px;
 
-      box-shadow:
-        0 30px 100px rgba(0,0,0,.55),
-        0 0 80px rgba(73,180,111,.07);
-    }
+    color:var(--green);
 
-    .image-frame::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 2;
+    font-style:italic;
+}
 
-      background:
+.subtitle{
+    max-width:400px;
+
+    margin-top:42px;
+
+    color:#909b94;
+
+    font-size:13px;
+
+    line-height:1.9;
+}
+
+/* CTA */
+
+.button{
+    display:inline-flex;
+    align-items:center;
+    gap:15px;
+
+    margin-top:32px;
+
+    padding:15px 21px;
+
+    color:#06100a;
+
+    text-decoration:none;
+
+    background:var(--green);
+
+    border-radius:3px;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+
+    transition:.3s ease;
+
+    box-shadow:
+        0 12px 45px rgba(156,255,199,.12);
+}
+
+.button:hover{
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 18px 55px rgba(156,255,199,.25);
+}
+
+.button-arrow{
+    width:25px;
+    height:25px;
+
+    display:grid;
+    place-items:center;
+
+    border-left:1px solid rgba(0,0,0,.18);
+
+    padding-left:10px;
+}
+
+/* =========================
+   IMAGE
+========================= */
+
+.hero-right{
+    height:760px;
+    position:relative;
+}
+
+.photo{
+    position:absolute;
+
+    width:75%;
+    height:88%;
+
+    right:0;
+    top:6%;
+
+    overflow:hidden;
+
+    border-radius:2px;
+
+    border:1px solid rgba(255,255,255,.14);
+
+    box-shadow:
+        -30px 30px 100px rgba(0,0,0,.65);
+}
+
+.photo::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    z-index:2;
+
+    background:
         linear-gradient(
-          180deg,
-          rgba(0,0,0,.02) 35%,
-          rgba(0,0,0,.68) 100%
+            180deg,
+            rgba(0,0,0,.02) 35%,
+            rgba(0,0,0,.5) 100%
         );
-    }
+}
 
-    .image-frame::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 3;
+.photo::after{
+    content:"";
 
-      background:
-        linear-gradient(
-          90deg,
-          rgba(5,8,6,.15),
-          transparent 50%,
-          rgba(5,8,6,.15)
-        );
-    }
+    position:absolute;
+    inset:0;
 
-    .hero-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
+    z-index:3;
 
-      transform: scale(1.02);
-      transition: transform 1s ease;
-    }
+    border:1px solid rgba(156,255,199,.08);
 
-    .image-frame:hover .hero-image {
-      transform: scale(1.06);
-    }
+    pointer-events:none;
+}
 
-    /* IMAGE BADGE */
+.photo img{
+    width:100%;
+    height:100%;
 
-    .image-badge {
-      position: absolute;
-      z-index: 5;
+    object-fit:cover;
 
-      left: 22px;
-      bottom: 22px;
+    object-position:center;
 
-      padding: 14px 17px;
+    filter:saturate(.82) contrast(1.05);
 
-      border-radius: 15px;
+    transform:scale(1.03);
 
-      background: rgba(5,8,6,.62);
-      border: 1px solid rgba(255,255,255,.12);
+    transition:1s ease;
+}
 
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-    }
+.photo:hover img{
+    transform:scale(1.08);
+}
 
-    .image-badge small {
-      display: block;
-      color: #89958e;
-      font-size: 9px;
-      letter-spacing: 1.5px;
-      margin-bottom: 5px;
-      text-transform: uppercase;
-    }
+/* IMAGE LABEL */
 
-    .image-badge strong {
-      font-size: 13px;
-      letter-spacing: .5px;
-    }
+.image-label{
+    position:absolute;
 
-    /* Floating card */
+    bottom:28px;
+    left:28px;
 
-    .floating-card {
-      position: absolute;
-      z-index: 6;
+    z-index:5;
 
-      right: -25px;
-      top: 55px;
+    padding:13px 16px;
 
-      width: 145px;
-      padding: 17px;
+    background:rgba(5,8,6,.62);
 
-      border-radius: 17px;
+    backdrop-filter:blur(15px);
 
-      background: rgba(10,15,12,.72);
-      border: 1px solid rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.12);
+}
 
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+.image-label small{
+    display:block;
 
-      box-shadow: 0 20px 45px rgba(0,0,0,.35);
+    color:#7f8983;
 
-      animation: float 4s ease-in-out infinite;
-    }
+    font-size:8px;
 
-    .floating-icon {
-      width: 35px;
-      height: 35px;
-      display: grid;
-      place-items: center;
+    letter-spacing:2px;
 
-      border-radius: 11px;
-      margin-bottom: 12px;
+    margin-bottom:5px;
+}
 
-      background: rgba(140,255,193,.09);
-      color: var(--green);
-    }
+.image-label strong{
+    font-size:11px;
 
-    .floating-card strong {
-      display: block;
-      font-size: 12px;
-      margin-bottom: 4px;
-    }
+    letter-spacing:1px;
+}
 
-    .floating-card span {
-      font-size: 9px;
-      color: #7f8983;
-    }
+/* VERTICAL TEXT */
 
-    @keyframes float {
-      0%,100% {
-        transform: translateY(0);
-      }
+.vertical{
+    position:absolute;
 
-      50% {
-        transform: translateY(-9px);
-      }
-    }
+    right:-25px;
+    top:25%;
 
-    /* LOWER SECTION */
+    writing-mode:vertical-rl;
 
-    .section {
-      padding: 0 0 80px;
-    }
+    color:#4e5952;
 
-    .section-head {
-      text-align: center;
-      max-width: 620px;
-      margin: 0 auto 30px;
-    }
+    font-size:8px;
 
-    .section-head h2 {
-      font-family: "Playfair Display", serif;
-      font-size: 35px;
-      margin-bottom: 10px;
-    }
+    letter-spacing:4px;
+}
 
-    .section-head p {
-      color: #818c85;
-      font-size: 13px;
-      line-height: 1.7;
-    }
+/* NUMBER */
 
-    .features {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-    }
+.number{
+    position:absolute;
 
-    .feature {
-      padding: 27px 23px;
-      border-radius: 20px;
+    bottom:40px;
+    left:0;
 
-      background: var(--glass);
-      border: 1px solid var(--border);
+    color:#414b45;
 
-      transition: .25s ease;
-    }
+    font-family:"Playfair Display",serif;
 
-    .feature:hover {
-      transform: translateY(-5px);
-      border-color: rgba(140,255,193,.2);
-      background: rgba(255,255,255,.065);
-    }
+    font-size:70px;
+}
 
-    .feature-number {
-      color: var(--green);
-      font-size: 10px;
-      letter-spacing: 2px;
-      margin-bottom: 22px;
-    }
+/* =========================
+   SCROLL
+========================= */
 
-    .feature h3 {
-      font-size: 15px;
-      margin-bottom: 9px;
-    }
+.scroll{
+    position:absolute;
 
-    .feature p {
-      color: #7f8983;
-      font-size: 12px;
-      line-height: 1.75;
-    }
+    bottom:35px;
+    left:5%;
 
-    /* FINAL CTA */
+    display:flex;
+    align-items:center;
+    gap:12px;
 
-    .final-box {
-      position: relative;
-      overflow: hidden;
+    color:#59645e;
 
-      text-align: center;
+    font-size:8px;
 
-      padding: 60px 25px;
+    letter-spacing:3px;
+}
 
-      border-radius: 28px;
+.scroll-line{
+    width:45px;
+    height:1px;
 
-      background:
+    background:#59645e;
+}
+
+/* =========================
+   SECOND SECTION
+========================= */
+
+.about{
+    width:min(1000px,90%);
+    margin:0 auto;
+
+    padding:120px 0 150px;
+
+    text-align:center;
+}
+
+.about-kicker{
+    color:var(--green);
+
+    font-size:9px;
+
+    letter-spacing:3px;
+
+    margin-bottom:22px;
+}
+
+.about h2{
+    font-family:"Playfair Display",serif;
+
+    font-size:clamp(35px,5vw,58px);
+
+    font-weight:500;
+
+    line-height:1.05;
+
+    margin-bottom:22px;
+}
+
+.about h2 em{
+    color:var(--green);
+}
+
+.about p{
+    max-width:570px;
+
+    margin:auto;
+
+    color:#77817b;
+
+    font-size:13px;
+
+    line-height:1.9;
+}
+
+/* =========================
+   FEATURE STRIP
+========================= */
+
+.features{
+    width:min(1100px,90%);
+    margin:auto;
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+
+    margin-bottom:120px;
+}
+
+.feature{
+    padding:35px 28px;
+
+    border-right:1px solid var(--line);
+}
+
+.feature:last-child{
+    border-right:0;
+}
+
+.feature span{
+    color:#526057;
+
+    font-size:9px;
+
+    letter-spacing:2px;
+}
+
+.feature h3{
+    margin-top:13px;
+
+    font-size:14px;
+}
+
+.feature p{
+    margin-top:8px;
+
+    color:#707b74;
+
+    font-size:11px;
+
+    line-height:1.7;
+}
+
+/* =========================
+   FINAL
+========================= */
+
+.final{
+    width:min(900px,90%);
+    margin:auto;
+
+    text-align:center;
+
+    padding:90px 20px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    background:
         radial-gradient(
-          circle at center,
-          rgba(91,198,130,.11),
-          transparent 65%
-        ),
-        rgba(255,255,255,.025);
+            circle at center,
+            rgba(70,180,105,.08),
+            transparent 65%
+        );
+}
 
-      border: 1px solid rgba(255,255,255,.09);
+.final h2{
+    font-family:"Playfair Display",serif;
 
-      margin-bottom: 70px;
+    font-size:clamp(38px,6vw,70px);
+
+    font-weight:500;
+}
+
+.final p{
+    color:#737d77;
+
+    font-size:12px;
+
+    margin-top:12px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    text-align:center;
+
+    padding:50px 0 30px;
+
+    color:#3f4943;
+
+    font-size:9px;
+
+    letter-spacing:1px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:850px){
+
+    .nav{
+        height:80px;
     }
 
-    .final-box h2 {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(30px, 5vw, 47px);
-      margin-bottom: 12px;
+    .nav-text,
+    .nav-line{
+        display:none;
     }
 
-    .final-box p {
-      color: #7f8983;
-      font-size: 13px;
-      margin-bottom: 25px;
+    .hero{
+        display:flex;
+        flex-direction:column;
+
+        padding-top:130px;
+
+        width:92%;
     }
 
-    footer {
-      text-align: center;
-      padding-bottom: 30px;
-      color: #4d5851;
-      font-size: 10px;
-      letter-spacing: .5px;
+    .hero-left{
+        width:100%;
+
+        text-align:center;
     }
 
-    /* MOBILE */
-
-    @media (max-width: 800px) {
-
-      nav {
-        height: 75px;
-      }
-
-      .nav-tag {
-        display: none;
-      }
-
-      .hero {
-        grid-template-columns: 1fr;
-        gap: 35px;
-        padding: 45px 0 70px;
-      }
-
-      .hero-content {
-        text-align: center;
-      }
-
-      .small-label {
-        margin-bottom: 20px;
-      }
-
-      h1 {
-        font-size: 57px;
-        letter-spacing: -2px;
-      }
-
-      .description {
-        margin-left: auto;
-        margin-right: auto;
-        font-size: 13px;
-      }
-
-      .cta {
-        width: 100%;
-        justify-content: center;
-      }
-
-      .visual {
-        height: 510px;
-      }
-
-      .floating-card {
-        right: 10px;
-        top: 25px;
-      }
-
-      .features {
-        grid-template-columns: 1fr;
-      }
-
-      .section-head h2 {
-        font-size: 30px;
-      }
+    .kicker{
+        justify-content:center;
     }
 
-    @media (max-width: 430px) {
+    .title{
+        font-size:70px;
 
-      .page {
-        width: 90%;
-      }
+        letter-spacing:-4px;
 
-      h1 {
-        font-size: 50px;
-      }
-
-      .visual {
-        height: 470px;
-      }
-
-      .image-frame {
-        border-radius: 27px;
-      }
-
-      .floating-card {
-        width: 130px;
-        padding: 14px;
-      }
+        margin-left:0;
     }
-  </style>
+
+    .title .hub{
+        margin-left:35px;
+    }
+
+    .subtitle{
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .button{
+        width:100%;
+
+        justify-content:center;
+    }
+
+    .hero-right{
+        width:100%;
+        height:540px;
+
+        margin-top:45px;
+    }
+
+    .photo{
+        width:88%;
+        height:95%;
+
+        right:0;
+        top:0;
+    }
+
+    .number{
+        left:0;
+        bottom:0;
+
+        font-size:55px;
+    }
+
+    .vertical{
+        display:none;
+    }
+
+    .scroll{
+        display:none;
+    }
+
+    .features{
+        grid-template-columns:1fr;
+    }
+
+    .feature{
+        border-right:0;
+        border-bottom:1px solid var(--line);
+    }
+
+    .feature:last-child{
+        border-bottom:0;
+    }
+
+    .about{
+        padding-top:80px;
+        padding-bottom:100px;
+    }
+
+}
+
+@media(max-width:430px){
+
+    .logo{
+        font-size:11px;
+        letter-spacing:2px;
+    }
+
+    .dragon-mark{
+        width:35px;
+        height:35px;
+    }
+
+    .title{
+        font-size:59px;
+    }
+
+    .hero-right{
+        height:480px;
+    }
+
+    .photo{
+        width:92%;
+    }
+}
+</style>
 </head>
 
 <body>
 
-  <div class="page">
-
-    <!-- NAV -->
-    <nav>
-
-      <div class="logo-text">
-        <div class="dragon-mark">🐉</div>
-        DRAGON HUB
-      </div>
-
-      <div class="nav-tag">
-        OFFICIAL COMMUNITY
-      </div>
-
-    </nav>
+<div class="background">
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+</div>
 
 
-    <!-- HERO -->
-    <section class="hero">
+<header>
+    <div class="nav">
 
-      <div class="hero-content">
-
-        <div class="small-label">
-          <span class="dot"></span>
-          Official Telegram Community
+        <div class="logo">
+            <div class="logo-symbol">🐉</div>
+            DRAGON HUB
         </div>
 
-        <h1>
-          Welcome to
-          <span>Dragon Hub.</span>
+        <div class="nav-right">
+            <div class="nav-text">OFFICIAL COMMUNITY</div>
+            <div class="nav-line"></div>
+        </div>
+
+    </div>
+</header>
+
+
+<main>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-left">
+
+        <div class="kicker">
+            <span class="kicker-line"></span>
+            WELCOME TO THE HUB
+        </div>
+
+        <h1 class="title">
+            <span class="dragon">DRAGON</span>
+            <span class="hub">HUB.</span>
         </h1>
 
-        <p class="description">
-          A dedicated space for updates, discussions and
-          shared content. Join the Dragon Hub community
-          and stay connected through Telegram.
+        <p class="subtitle">
+            A dedicated community space for updates,
+            discussions and shared content.
+            Connect with Dragon Hub through our
+            official Telegram community.
         </p>
 
         <a
-          class="cta"
-          href="https://t.me/+rcU1nqNlF6tjYTI9"
-          target="_blank"
-          rel="noopener noreferrer"
+            class="button"
+            href="https://t.me/+rcU1nqNlF6tjYTI9"
+            target="_blank"
+            rel="noopener noreferrer"
         >
-          <span class="telegram-icon">➤</span>
-          JOIN DRAGON HUB
+            JOIN THE COMMUNITY
+
+            <span class="button-arrow">↗</span>
         </a>
 
-      </div>
+    </div>
 
 
-      <!-- IMAGE -->
-      <div class="visual">
+    <div class="hero-right">
 
-        <div class="image-frame">
+        <div class="photo">
 
-          <!-- Upload your photo as hero.jpg -->
-          <img
-            src="IMG_20260509_223101_194.jpg"
-            alt="Dragon Hub"
-            class="hero-image"
-          >
+            <img
+                src="IMG_20260509_223101_194.jpg"
+                alt="Dragon Hub"
+            >
 
-          <div class="image-badge">
-            <small>DRAGON HUB</small>
-            <strong>Stay Connected</strong>
-          </div>
+            <div class="image-label">
 
-        </div>
+                <small>DRAGON HUB</small>
 
-        <div class="floating-card">
+                <strong>OFFICIAL COMMUNITY</strong>
 
-          <div class="floating-icon">
-            ✦
-          </div>
-
-          <strong>Community</strong>
-
-          <span>
-            Updates & shared content
-          </span>
+            </div>
 
         </div>
 
-      </div>
+        <div class="vertical">
+            DRAGON HUB • ESTABLISHED COMMUNITY
+        </div>
 
-    </section>
+        <div class="number">
+            01
+        </div>
+
+    </div>
+
+</section>
 
 
-    <!-- FEATURES -->
-    <section class="section">
+<!-- ABOUT -->
 
-      <div class="section-head">
+<section class="about">
 
-        <h2>Inside Dragon Hub</h2>
+    <div class="about-kicker">
+        THE COMMUNITY
+    </div>
+
+    <h2>
+        One place.<br>
+        <em>Stay connected.</em>
+    </h2>
+
+    <p>
+        Dragon Hub brings the community together in one
+        simple destination. Access the official Telegram
+        channel and stay connected with the latest content
+        shared by the community.
+    </p>
+
+</section>
+
+
+<!-- FEATURES -->
+
+<section class="features">
+
+    <div class="feature">
+
+        <span>01 / UPDATES</span>
+
+        <h3>Stay Informed</h3>
 
         <p>
-          Everything in one simple place, with direct
-          access to the official Telegram community.
+            Follow new information and content
+            shared with the community.
         </p>
 
-      </div>
+    </div>
 
 
-      <div class="features">
+    <div class="feature">
 
-        <div class="feature">
+        <span>02 / COMMUNITY</span>
 
-          <div class="feature-number">01 — UPDATES</div>
+        <h3>Connect</h3>
 
-          <h3>Regular Information</h3>
+        <p>
+            Join the Telegram community and
+            stay connected with other members.
+        </p>
 
-          <p>
-            Stay connected with new information and
-            content shared through the community.
-          </p>
-
-        </div>
+    </div>
 
 
-        <div class="feature">
+    <div class="feature">
 
-          <div class="feature-number">02 — COMMUNITY</div>
+        <span>03 / ACCESS</span>
 
-          <h3>Connect With Others</h3>
+        <h3>Direct Entry</h3>
 
-          <p>
-            Access the Telegram community and stay
-            connected with fellow members.
-          </p>
+        <p>
+            Simple access to the official Dragon
+            Hub Telegram community.
+        </p>
 
-        </div>
+    </div>
 
-
-        <div class="feature">
-
-          <div class="feature-number">03 — ACCESS</div>
-
-          <h3>Simple & Direct</h3>
-
-          <p>
-            One simple button gives you direct access
-            to the Dragon Hub Telegram channel.
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
+</section>
 
 
-    <!-- FINAL CTA -->
-    <section class="final-box">
+<!-- FINAL CTA -->
 
-      <h2>Enter Dragon Hub</h2>
+<section class="final">
 
-      <p>
-        Join the official Telegram community.
-      </p>
+    <h2>
+        Enter Dragon Hub.
+    </h2>
 
-      <a
-        class="cta"
+    <p>
+        Connect with the official community.
+    </p>
+
+    <a
+        class="button"
         href="https://t.me/+rcU1nqNlF6tjYTI9"
         target="_blank"
         rel="noopener noreferrer"
-      >
-        <span class="telegram-icon">➤</span>
+    >
         JOIN TELEGRAM
-      </a>
+        <span class="button-arrow">↗</span>
+    </a>
 
-    </section>
+</section>
 
 
-    <footer>
-      © 2026 DRAGON HUB · Official Community
-    </footer>
+</main>
 
-  </div>
+
+<footer>
+    © 2026 DRAGON HUB — OFFICIAL COMMUNITY
+</footer>
 
 </body>
-</html>
+  </html>
