@@ -13,19 +13,30 @@
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;
-n.push=n;
-n.loaded=!0;
-n.version='2.0';
-n.queue=[];
-t=b.createElement(e);
-t.async=!0;
-t.src=v;
-s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)
-}(window, document,'script',
+{
+    if(f.fbq)return;
+
+    n=f.fbq=function(){
+        n.callMethod ?
+        n.callMethod.apply(n,arguments) :
+        n.queue.push(arguments)
+    };
+
+    if(!f._fbq)f._fbq=n;
+
+    n.push=n;
+    n.loaded=!0;
+    n.version='2.0';
+    n.queue=[];
+
+    t=b.createElement(e);
+    t.async=!0;
+    t.src=v;
+
+    s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)
+}
+(window, document, 'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 
 fbq('init', '1543878440828510');
@@ -33,10 +44,15 @@ fbq('track', 'PageView');
 </script>
 
 <noscript>
-<img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1543878440828510&ev=PageView&noscript=1"/>
+<img
+    height="1"
+    width="1"
+    style="display:none"
+    src="https://www.facebook.com/tr?id=1543878440828510&ev=PageView&noscript=1"
+/>
 </noscript>
 <!-- End Meta Pixel Code -->
+
 
 <style>
 
@@ -880,11 +896,11 @@ h1{
             <!-- LARGE CTA -->
 
             <a
+                id="telegramJoin"
                 class="join"
                 href="https://t.me/+kX0O6mGTDaQ5MTU1"
                 target="_blank"
                 rel="noopener noreferrer"
-                onclick="trackSubscribe(event, this.href)"
             >
 
                 <span class="telegram-icon">
@@ -909,22 +925,37 @@ h1{
 </div>
 
 
-<!-- Subscribe Tracking -->
+<!-- Subscribe Event Tracking -->
 
 <script>
-function trackSubscribe(event, url) {
+document.addEventListener('DOMContentLoaded', function () {
 
-    event.preventDefault();
+    var button = document.getElementById('telegramJoin');
 
-    if (typeof fbq === 'function') {
-        fbq('track', 'Subscribe');
+    if (!button) {
+        return;
     }
 
-    setTimeout(function() {
-        window.open(url, '_blank');
-    }, 500);
-}
+    button.addEventListener('click', function () {
+
+        console.log('BUTTON CLICKED');
+
+        if (typeof fbq === 'function') {
+
+            console.log('FBQ FOUND');
+
+            fbq('track', 'Subscribe');
+
+        } else {
+
+            console.log('FBQ NOT FOUND');
+
+        }
+
+    });
+
+});
 </script>
 
 </body>
-</html>
+    </html>
